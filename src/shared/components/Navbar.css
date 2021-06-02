@@ -1,0 +1,9 @@
+.navigation {
+  background: var(--color-lightblue);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4rem;
+  z-index: var(--z-index-five);
+}
