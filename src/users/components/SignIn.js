@@ -9,6 +9,7 @@ function SignIn({ toggleForm }) {
         <h2>Sign In</h2>
         <input type="email" name="" placeholder="Email" />
         <input type="password" name="" placeholder="Password" />
+        <p className={`error`}></p>
         <button>Login</button>
         <p className="signup">
           Don't have an account ?
