@@ -22,6 +22,8 @@ html {
   --z-index-four: 4;
   --z-index-five: 5;
   --z-index-six: 6;
+  --z-index-ten: 10;
+
   --border-opacity: rgba(0, 0, 0, 0.2);
 }
 body {
