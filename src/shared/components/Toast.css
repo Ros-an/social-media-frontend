@@ -1,0 +1,21 @@
+.toast {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: translateY(100%);
+  z-index: var(--z-index-ten);
+  background: var(--color-cream);
+  height: 4rem;
+  transition: all 0.8s linear;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.toast-open {
+  transform: none;
+}
+.toast p {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
