@@ -133,10 +133,11 @@ form .success-message {
   transition: all 2s linear;
 }
 form .error {
-  height: 2rem;
+  min-height: 2rem;
   margin: 0;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: red;
+  margin-bottom: 0.25rem;
 }
 form .hidden {
   visibility: hidden;
