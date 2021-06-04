@@ -5,7 +5,7 @@ import axios from "axios";
 
 function SignUp({ toggleForm }) {
   const [isLoading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(true);
+  const [success, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [formField, setFormField] = useState({
     name: "",
@@ -14,6 +14,8 @@ function SignUp({ toggleForm }) {
     confirmPassword: "",
   });
   const { name, email, password, confirmPassword } = formField;
+  const readyToSubmit = name && email && password && confirmPassword;
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setErrorMessage("");
@@ -28,12 +30,12 @@ function SignUp({ toggleForm }) {
       return setErrorMessage("username length atleast 3");
     }
     if (password.length < 8) {
-      return setErrorMessage("password length atleast 8!");
+      return setErrorMessage("password must be of atleast 8 characters");
     }
     if (confirmPassword !== password) {
       return setErrorMessage("passwords do not match!");
     }
-    if (name && email && password && confirmPassword) {
+    if (readyToSubmit) {
       const user = {
         name,
         email,
@@ -42,9 +44,14 @@ function SignUp({ toggleForm }) {
       setLoading(true);
       // post request to backend
       try {
-        const { data } = await axios.post("http://localhost:8080/signup", user);
-        console.log(data);
-        setSuccess(true);
+        const { data, status } = await axios.post(
+          "http://localhost:8080/signup",
+          user
+        );
+        console.log(data, status);
+        if (data.success && status === 201) {
+          setSuccess(true);
+        }
       } catch (err) {
         return setErrorMessage(err.response.data.message);
       } finally {
@@ -56,10 +63,8 @@ function SignUp({ toggleForm }) {
         password: "",
         confirmPassword: "",
       });
-      setErrorMessage("");
     }
   };
-  const readyToSubmit = name && email && password && confirmPassword;
   return (
     <>
       <form onSubmit={handleSubmit} className="signup-form">
