@@ -1,8 +1,14 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Loader } from "../../shared/components/Loader";
+import { Link, Navigate } from "react-router-dom";
+import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
+import VisibilityIcon from "@material-ui/icons/Visibility";
 import axios from "axios";
 
 function SignIn({ toggleForm }) {
+  const [passwordVisibililty, setPasswordVisibility] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+  const [redirectToHome, setRedirect] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [formField, setFormField] = useState({
     email: "",
@@ -11,6 +17,12 @@ function SignIn({ toggleForm }) {
   const { email, password } = formField;
   const readyToSubmit = email && password;
 
+  const authenticate = (jwt, next) => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("jwt", JSON.stringify(jwt));
+      next();
+    }
+  };
   const handleChange = (event) => {
     const { name, value } = event.target;
     setErrorMessage("");
@@ -22,6 +34,7 @@ function SignIn({ toggleForm }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (readyToSubmit) {
+      setLoading(true);
       try {
         const user = {
           email,
@@ -31,13 +44,22 @@ function SignIn({ toggleForm }) {
           "http://localhost:8080/signin",
           user
         );
-        console.log(data, status);
+        if (data.success && status === 200) {
+          const { token, user } = data;
+          authenticate({ user, token }, () => {
+            setRedirect(true);
+          });
+        }
       } catch (err) {
         return setErrorMessage(err.response.data.message);
+      } finally {
+        setLoading(false);
       }
-      console.log("ros");
     }
   };
+  if (redirectToHome) {
+    return <Navigate to="/" />;
+  }
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -48,16 +70,30 @@ function SignIn({ toggleForm }) {
           placeholder="Email"
           onChange={handleChange}
         />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          onChange={handleChange}
-        />
+        <span className="password-section">
+          <input
+            type={`${passwordVisibililty ? "text" : "password"}`}
+            name="password"
+            placeholder="Password"
+            onChange={handleChange}
+          />
+          <span
+            className="password-visibility"
+            onClick={() => setPasswordVisibility(!passwordVisibililty)}
+          >
+            {passwordVisibililty ? (
+              <VisibilityOffIcon className="icon" />
+            ) : (
+              <VisibilityIcon className="icon" />
+            )}
+          </span>
+        </span>
         <p className={`error ${errorMessage ? "display" : "hidden"}`}>
           {errorMessage}
         </p>
-        <button disabled={readyToSubmit ? false : true}>Login</button>
+        <button disabled={readyToSubmit ? false : true}>
+          {isLoading ? <Loader /> : "Login"}
+        </button>
         <p className="signup">
           Don't have an account ?
           <Link to="#" onClick={() => toggleForm()}>
