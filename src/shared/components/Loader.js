@@ -11,4 +11,4 @@ function Loader() {
   return <div style={customStyle} className="lds-dual-ring"></div>;
 }
 
-export default Loader;
+export { Loader };
