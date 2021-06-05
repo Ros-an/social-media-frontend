@@ -1,12 +1,12 @@
 .authenticate {
   position: relative;
-  min-height: 100vh;
+  min-height: 91vh;
   display: flex;
+  overflow: auto;
   justify-content: center;
   align-items: center;
   padding: 20px;
   background: var(--color-lightblue);
-  z-index: var(--z-index-six);
 }
 
 section .container {
@@ -146,6 +146,20 @@ form .hidden {
 form .display {
   visibility: visible;
   transition: 0.5s;
+}
+/* ----password visibility section ----- */
+.password-section {
+  position: relative;
+}
+.password-section .password-visibility {
+  position: absolute;
+  right: 0.5rem;
+  transform: translateY(60%);
+}
+.password-section .password-visibility .icon {
+  font-size: 1.25rem;
+  color: gray;
+  cursor: pointer;
 }
 
 .authenticate .container .user .formBx form .signup a {

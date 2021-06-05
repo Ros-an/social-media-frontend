@@ -31,5 +31,5 @@ body {
 }
 
 main {
-  /* margin-left: 25vw; */
+  min-height: 91vh;
 }

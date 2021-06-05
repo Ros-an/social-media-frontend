@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
 .navigation {
   background: var(--color-lightblue);
-  position: absolute;
+  position: sticky;
+  height: 3.5rem;
   top: 0;
   left: 0;
   right: 0;
@@ -12,11 +13,56 @@
   align-items: center;
   align-content: center;
 }
-
+.navigation a {
+  text-decoration: none;
+  color: var(--color-light);
+}
 .navigation .logo {
   font-family: "Satisfy", cursive;
   font-weight: 500;
   font-size: 2rem;
   cursor: pointer;
   color: var(--color-light);
+}
+
+.navigation .navigation-item {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+.navigation .navigation-item a {
+  padding: 0 1.5rem;
+  font-size: 1.05em;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  border-bottom: 3px solid transparent;
+}
+.navigation .navigation-item a:hover {
+  background: var(--color-light);
+  color: var(--color-lightblue);
+}
+.navigation .navigation-item a:active,
+.navigation .navigation-item a.active {
+  border-color: var(--color-cream);
+  background: var(--color-light);
+  color: var(--color-lightblue);
+}
+/* --------small screen------- */
+
+@media screen and (max-width: 500px) {
+  .navigation {
+    padding: 0.5rem 0.5rem;
+  }
+  .navigation .logo {
+    font-size: 1.75rem;
+  }
+  .navigation .navigation-item a {
+    padding: 0 0.75rem;
+    font-size: 1em;
+  }
 }
