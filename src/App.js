@@ -1,5 +1,5 @@
 import Navbar from "./shared/components/Navbar";
-import RouteComponent from "./RouteComponent";
+import Routing from "./Routing";
 
 function App() {
   console.log("app rendering");
@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <Navbar />
       <main>
-        <RouteComponent />
+        <Routing />
       </main>
     </div>
   );
