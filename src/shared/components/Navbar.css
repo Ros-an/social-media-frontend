@@ -45,12 +45,14 @@
 .navigation .navigation-item a:hover {
   background: var(--color-light);
   color: var(--color-lightblue);
+  transition: all 0.1s linear;
 }
 .navigation .navigation-item a:active,
 .navigation .navigation-item a.active {
   border-color: var(--color-cream);
   background: var(--color-light);
   color: var(--color-lightblue);
+  transition: 0.1s;
 }
 /* --------small screen------- */
 
