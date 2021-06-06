@@ -1,19 +1,22 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { Loader } from "../../shared/components/Loader";
 import { Link, Navigate } from "react-router-dom";
+import { useAuthContext } from "../../context-api/auth-context";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import VisibilityIcon from "@material-ui/icons/Visibility";
-import axios from "axios";
 
 function SignIn({ toggleForm }) {
-  const [passwordVisibililty, setPasswordVisibility] = useState(false);
-  const [isLoading, setLoading] = useState(false);
-  const [redirectToHome, setRedirect] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [formField, setFormField] = useState({
     email: "",
     password: "",
   });
+  const [isLoading, setLoading] = useState(false);
+  const [passwordVisibililty, setPasswordVisibility] = useState(false);
+  const [redirectToHome, setRedirect] = useState(false);
+  const { dispatch } = useAuthContext();
+
   const { email, password } = formField;
   const readyToSubmit = email && password;
 
@@ -55,6 +58,7 @@ function SignIn({ toggleForm }) {
       } finally {
         setLoading(false);
       }
+      dispatch({ type: "NAVLINK_CONTROL" });
     }
   };
   if (redirectToHome) {
