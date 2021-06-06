@@ -29,7 +29,19 @@ html {
 body {
   margin: 0;
 }
-
-main {
+.loader-page {
+  min-height: 95vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.App .content {
   min-height: 91vh;
+}
+
+.pointer-cursor {
+  cursor: pointer;
+}
+.pointer-text {
+  cursor: text;
 }
