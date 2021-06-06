@@ -69,7 +69,7 @@ function SignUp({ toggleForm }) {
     <>
       <form onSubmit={handleSubmit} className="signup-form">
         {success && (
-          <p className="success-message">Signup successful! Please Signin.</p>
+          <p className="success-message">Signup successful ! Please Signin.</p>
         )}
         <h2>Create an account</h2>
         <input

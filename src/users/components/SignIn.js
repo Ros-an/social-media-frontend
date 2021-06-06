@@ -58,7 +58,7 @@ function SignIn({ toggleForm }) {
       } finally {
         setLoading(false);
       }
-      dispatch({ type: "NAVLINK_CONTROL" });
+      dispatch({ type: "SHOW_LOADER" });
     }
   };
   if (redirectToHome) {
