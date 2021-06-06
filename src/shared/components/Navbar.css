@@ -13,7 +13,8 @@
   align-items: center;
   align-content: center;
 }
-.navigation a {
+.navigation a,
+.navigation-item--link {
   text-decoration: none;
   color: var(--color-light);
 }
@@ -33,7 +34,8 @@
   align-items: center;
   align-content: center;
 }
-.navigation .navigation-item a {
+.navigation .navigation-item a,
+.navigation .navigation-item .navigation-item--link {
   padding: 0 1.5rem;
   font-size: 1.05em;
   height: 100%;
@@ -42,11 +44,13 @@
   align-content: center;
   border-bottom: 3px solid transparent;
 }
-.navigation .navigation-item a:hover {
+.navigation .navigation-item a:hover,
+.navigation .navigation-item .navigation-item--link:hover {
   background: var(--color-light);
   color: var(--color-lightblue);
   transition: all 0.1s linear;
 }
+.navigation .navigation-item .navigation-item--link:active,
 .navigation .navigation-item a:active,
 .navigation .navigation-item a.active {
   border-color: var(--color-cream);
@@ -54,6 +58,7 @@
   color: var(--color-lightblue);
   transition: 0.1s;
 }
+
 /* --------small screen------- */
 
 @media screen and (max-width: 500px) {
