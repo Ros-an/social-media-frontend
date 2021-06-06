@@ -3,15 +3,20 @@ import { createContext, useContext, useReducer } from "react";
 const AuthContext = createContext();
 
 const initialState = {
-  authorised: false,
+  loader: false,
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "NAVLINK_CONTROL":
+    case "SHOW_LOADER":
       return {
         ...state,
-        authorised: true,
+        loader: true,
+      };
+    case "CLOSE_LOADER":
+      return {
+        ...state,
+        loader: false,
       };
     default:
       return state;
@@ -19,8 +24,11 @@ const reducer = (state, action) => {
 };
 export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const closeLoader = () => {
+    dispatch({ type: "CLOSE_LOADER" });
+  };
   return (
-    <AuthContext.Provider value={{ ...state, dispatch }}>
+    <AuthContext.Provider value={{ ...state, dispatch, closeLoader }}>
       {children}
     </AuthContext.Provider>
   );
