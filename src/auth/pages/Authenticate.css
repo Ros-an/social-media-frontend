@@ -1,11 +1,15 @@
 .authenticate {
-  position: relative;
-  min-height: 91vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
   overflow: auto;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 1.25rem;
+  margin-top: 1rem;
   background: var(--color-lightblue);
 }
 
