@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
-import { isAuthenticated } from "../../utils/authrelated";
+import { isAuthenticated, userInfo } from "../../utils/authrelated";
+import PersonIcon from "@material-ui/icons/Person";
+import HomeIcon from "@material-ui/icons/Home";
 import Logout from "../../auth/components/Logout";
 function Navbar() {
   let toggle = false;
@@ -13,16 +15,20 @@ function Navbar() {
       <NavLink
         className="logo"
         to={toggle ? "/" : "/authenticate"}
-        style={{ cursor: !toggle && "default" }}
+        style={{ cursor: !toggle && "auto" }}
       >
         Socialize
       </NavLink>
       {toggle && (
         <div className="navigation-item">
           <NavLink end to="/">
-            Home
+            <HomeIcon />
+            <p>Home</p>
           </NavLink>
-          <NavLink to="/profile">Profile</NavLink>
+          <NavLink to="/profile">
+            <PersonIcon />
+            <p>{userInfo().user.name}</p>
+          </NavLink>
           <Logout />
         </div>
       )}

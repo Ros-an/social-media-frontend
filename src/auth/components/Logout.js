@@ -5,7 +5,7 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 function Logout() {
   const { dispatch } = useAuthContext();
 
-  const logoutUser = async (next) => {
+  const logoutUser = async () => {
     if (typeof window !== "undefined") {
       localStorage.removeItem("jwt");
       dispatch({ type: "SHOW_LOADER" });
@@ -24,6 +24,7 @@ function Logout() {
       onClick={() => logoutUser()}
     >
       <ExitToAppIcon />
+      <p>Log out</p>
     </div>
   );
 }
