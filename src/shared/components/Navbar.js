@@ -25,9 +25,9 @@ function Navbar() {
             <HomeIcon />
             <p>Home</p>
           </NavLink>
-          <NavLink to="/profile">
+          <NavLink to={`/${userInfo().user.name}/${userInfo().user._id}`}>
             <PersonIcon />
-            <p>{userInfo().user.name}</p>
+            <p style={{ color: "black" }}>{userInfo().user.name}</p>
           </NavLink>
           <Logout />
         </div>

@@ -2,7 +2,6 @@ import Navbar from "./shared/components/Navbar";
 import Routing from "./Routing";
 import { LoaderBig } from "./shared/components/Loader";
 import { useAuthContext } from "./context-api/auth-context";
-
 function App() {
   const { loader } = useAuthContext();
 

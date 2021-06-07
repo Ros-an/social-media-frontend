@@ -1,6 +1,7 @@
 import Authenticate from "./auth/pages/Authenticate";
 import { isAuthenticated } from "./utils/authrelated";
 import { Routes, Route, Navigate } from "react-router-dom";
+import Profile from "./users/page/Profile";
 
 function Home() {
   if (!isAuthenticated()) {
@@ -13,6 +14,7 @@ function Routing() {
     <>
       <Routes>
         <Route exact path="/" element={<Home />} />
+        <Route path="/:user/:userId" element={<Profile />} />
         <Route path="/authenticate" element={<Authenticate />} />
       </Routes>
     </>

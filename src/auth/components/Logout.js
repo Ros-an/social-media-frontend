@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useAuthContext } from "../../context-api/auth-context";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+
 function Logout() {
   const { dispatch } = useAuthContext();
 
