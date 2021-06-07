@@ -133,7 +133,7 @@ form .success-message {
   text-align: center;
   margin: 0;
   font-size: 1.1rem;
-  padding: 0.5vw 0;
+  padding: 1vw 0;
   transition: all 0.5s linear;
 }
 form .error {
