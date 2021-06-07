@@ -6,3 +6,7 @@ export const isAuthenticated = () => {
   }
   return false;
 };
+
+export const userInfo = () => {
+  return JSON.parse(localStorage.getItem("jwt"));
+};
