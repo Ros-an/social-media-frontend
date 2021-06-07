@@ -4,6 +4,7 @@ const AuthContext = createContext();
 
 const initialState = {
   loader: false,
+  x: 0,
 };
 
 const reducer = (state, action) => {
@@ -18,15 +19,26 @@ const reducer = (state, action) => {
         ...state,
         loader: false,
       };
+    case "ONPAGE_LOAD":
+      return {
+        ...state,
+        loader: true,
+        x: 1,
+      };
     default:
       return state;
   }
 };
 export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
   const closeLoader = () => {
     dispatch({ type: "CLOSE_LOADER" });
   };
+  if (!state.x) {
+    console.log("authcontext se control");
+    dispatch({ type: "ONPAGE_LOAD" });
+  }
   return (
     <AuthContext.Provider value={{ ...state, dispatch, closeLoader }}>
       {children}
