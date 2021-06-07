@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 import { isAuthenticated } from "../../utils/authrelated";
-import Logout from "../../users/components/Logout";
+import Logout from "../../auth/components/Logout";
 function Navbar() {
   let toggle = false;
   if (isAuthenticated()) {

@@ -100,7 +100,7 @@ section .container {
   border-color: var(--color-cream);
   font-family: inherit;
   height: 2.25rem;
-  width: 30%;
+  width: 35%;
   cursor: pointer;
   font-size: 0.9rem;
   font-weight: 500;
@@ -129,8 +129,8 @@ form .success-message {
   text-align: center;
   margin: 0;
   font-size: 1.1rem;
-  padding: 0.5rem 0;
-  transition: all 2s linear;
+  padding: 0.5vw 0;
+  transition: all 0.5s linear;
 }
 form .error {
   min-height: 2rem;

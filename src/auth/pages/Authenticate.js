@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import SignUp from "../components/SignUp";
 import SignIn from "../components/SignIn";
 import { isAuthenticated } from "../../utils/authrelated";
@@ -7,22 +7,15 @@ import { Navigate } from "react-router-dom";
 
 function Authenticate() {
   const [addClass, setClass] = useState(true);
-  const [isSignedIn, setSignedIn] = useState(false);
   function toggleForm() {
     setClass((prev) => !prev);
   }
-  useEffect(() => {
-    const token = isAuthenticated();
-    if (!token) {
-      setSignedIn(true);
-    }
-  }, []);
   if (isAuthenticated()) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/" />;
   }
   return (
     <>
-      {isSignedIn && (
+      {!isAuthenticated() && (
         <section className="authenticate">
           <div className={addClass ? "container" : "container active"}>
             <div className="user signinBx">

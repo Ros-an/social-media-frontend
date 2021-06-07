@@ -1,17 +1,14 @@
 import axios from "axios";
-import React, { useState } from "react";
-import { Navigate } from "react-router-dom";
+import React from "react";
 import { useAuthContext } from "../../context-api/auth-context";
-
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 function Logout() {
   const { dispatch } = useAuthContext();
-  const [redirect, setRedirect] = useState(false);
 
   const logoutUser = async (next) => {
     if (typeof window !== "undefined") {
       localStorage.removeItem("jwt");
       dispatch({ type: "SHOW_LOADER" });
-      next();
     }
     try {
       const response = await axios.get("http://localhost:8080/signout");
@@ -20,20 +17,13 @@ function Logout() {
       console.log(err.response);
     }
   };
-  if (redirect) {
-    console.log("should be logout");
-    return <Navigate to="/authenticate" />;
-  }
+
   return (
     <div
       className="navigation-item--link pointer-cursor"
-      onClick={() =>
-        logoutUser(() => {
-          setRedirect(true);
-        })
-      }
+      onClick={() => logoutUser()}
     >
-      Logout
+      <ExitToAppIcon />
     </div>
   );
 }
