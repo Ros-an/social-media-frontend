@@ -29,6 +29,7 @@ html {
 body {
   margin: 0;
 }
+
 .loader-page {
   min-height: 95vh;
   display: flex;

@@ -5,7 +5,7 @@ import { useAuthContext } from "./context-api/auth-context";
 
 function App() {
   const { loader } = useAuthContext();
-  console.log("app rendering");
+
   if (loader) {
     return <main className="loader-page">{<LoaderBig />}</main>;
   }

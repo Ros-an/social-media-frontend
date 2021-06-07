@@ -22,7 +22,7 @@ function LoaderBig() {
   const { closeLoader } = useAuthContext();
   console.log("loader is on");
   useEffect(() => {
-    setTimeout(() => closeLoader(), 2000);
+    setTimeout(() => closeLoader(), 1000);
   });
   return <div style={customStyleTwo} className="lds-dual-ring"></div>;
 }
