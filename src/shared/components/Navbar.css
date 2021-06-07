@@ -68,7 +68,8 @@
   .navigation .logo {
     font-size: 1.75rem;
   }
-  .navigation .navigation-item a {
+  .navigation .navigation-item a,
+  .navigation .navigation-item .navigation-item--link {
     padding: 0 0.75rem;
     font-size: 1em;
   }
