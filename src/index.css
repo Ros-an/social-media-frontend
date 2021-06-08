@@ -29,21 +29,21 @@ html {
 body {
   margin: 0;
 }
-
-.loader-page {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+main {
+  min-height: 80vh;
+  margin: 0 15%;
+  transition: all 1.2s linear;
+  background: var(--color-cream);
 }
-
 .pointer-cursor {
   cursor: pointer;
 }
 .pointer-text {
   cursor: text;
+}
+
+@media screen and (max-width: 780px) {
+  main {
+    margin: 0 1%;
+  }
 }
