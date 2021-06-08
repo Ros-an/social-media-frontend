@@ -124,18 +124,7 @@ section .container {
 .signup-form {
   position: relative;
 }
-form .success-message {
-  position: absolute;
-  left: -1rem;
-  right: -1rem;
-  top: -3rem;
-  background: var(--color-pink);
-  text-align: center;
-  margin: 0;
-  font-size: 1.1rem;
-  padding: 1vw 0;
-  transition: all 0.5s linear;
-}
+
 form .error {
   min-height: 2rem;
   margin: 0;

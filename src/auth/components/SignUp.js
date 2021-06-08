@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { Loader } from "../../shared/components/Loader";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useAuthContext } from "../../context-api/auth-context";
 
 function SignUp({ toggleForm }) {
+  const { dispatch } = useAuthContext();
   const [isLoading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [formField, setFormField] = useState({
     name: "",
@@ -50,7 +51,10 @@ function SignUp({ toggleForm }) {
         );
         console.log(data, status);
         if (data.success && status === 201) {
-          setSuccess(true);
+          dispatch({
+            type: "TOAST_OPEN",
+            payload: "New account created successfully !! Now please login",
+          });
         }
       } catch (err) {
         return setErrorMessage(err.response.data.message);
@@ -68,9 +72,6 @@ function SignUp({ toggleForm }) {
   return (
     <>
       <form onSubmit={handleSubmit} className="signup-form">
-        {success && (
-          <p className="success-message">Signup successful ! Please Signin.</p>
-        )}
         <h2>Create an account</h2>
         <input
           onChange={handleChange}
@@ -111,7 +112,6 @@ function SignUp({ toggleForm }) {
           <Link
             to="#"
             onClick={() => {
-              setSuccess(false);
               toggleForm();
             }}
           >
