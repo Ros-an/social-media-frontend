@@ -3,7 +3,9 @@ import { createContext, useContext, useReducer } from "react";
 const AuthContext = createContext();
 
 const initialState = {
+  toast: false,
   loader: false,
+  toastMessage: "Toast Message",
   x: 0,
 };
 
@@ -25,6 +27,17 @@ const reducer = (state, action) => {
         loader: true,
         x: 1,
       };
+    case "TOAST_CLOSE":
+      return {
+        ...state,
+        toast: false,
+      };
+    case "TOAST_OPEN":
+      return {
+        ...state,
+        toast: true,
+        toastMessage: action.payload,
+      };
     default:
       return state;
   }
@@ -32,6 +45,9 @@ const reducer = (state, action) => {
 export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  const closeToast = () => {
+    dispatch({ type: "TOAST_CLOSE" });
+  };
   const closeLoader = () => {
     dispatch({ type: "CLOSE_LOADER" });
   };
@@ -40,7 +56,9 @@ export const AuthProvider = ({ children }) => {
     dispatch({ type: "ONPAGE_LOAD" });
   }
   return (
-    <AuthContext.Provider value={{ ...state, dispatch, closeLoader }}>
+    <AuthContext.Provider
+      value={{ ...state, dispatch, closeLoader, closeToast }}
+    >
       {children}
     </AuthContext.Provider>
   );
