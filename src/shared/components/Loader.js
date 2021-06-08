@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useAuthContext } from "../../context-api/auth-context";
 import "./Loader.css";
 
@@ -13,18 +13,23 @@ const customStyleTwo = {
   display: "inline-block",
   width: "3rem",
   height: "3rem",
+  transition: "all 1.2s linear",
 };
 function Loader() {
   return <div style={customStyleOne} className="lds-dual-ring"></div>;
 }
 
 function LoaderBig() {
-  const { closeLoader } = useAuthContext();
-  console.log("loader is on");
-  useEffect(() => {
-    setTimeout(() => closeLoader(), 1000);
-  });
-  return <div style={customStyleTwo} className="lds-dual-ring"></div>;
+  const { closeLoader, loader } = useAuthContext();
+  if (loader) {
+    console.log("loader is on");
+    setTimeout(() => closeLoader(), 1250);
+  }
+  return (
+    <div className="loader-page">
+      <div style={customStyleTwo} className="lds-dual-ring"></div>
+    </div>
+  );
 }
 
 export { Loader, LoaderBig };
