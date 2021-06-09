@@ -11,12 +11,27 @@ const customStyleOne = {
 const customStyleTwo = {
   background: "transparent",
   display: "inline-block",
-  width: "3rem",
-  height: "3rem",
+  width: "2.5em",
+  height: "2.5em",
+  transition: "all 1.2s linear",
+};
+const customStyleThree = {
+  background: "transparent",
+  display: "inline-block",
+  width: "1.5em",
+  height: "1.5em",
   transition: "all 1.2s linear",
 };
 function Loader() {
   return <div style={customStyleOne} className="lds-dual-ring"></div>;
+}
+
+function ContentLoader() {
+  return (
+    <div className="content-loader">
+      <div style={customStyleThree} className="lds-dual-ring"></div>
+    </div>
+  );
 }
 
 function LoaderBig() {
@@ -32,4 +47,4 @@ function LoaderBig() {
   );
 }
 
-export { Loader, LoaderBig };
+export { Loader, LoaderBig, ContentLoader };
