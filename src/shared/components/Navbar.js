@@ -4,6 +4,7 @@ import { isAuthenticated, userInfo } from "../../utils/authrelated";
 import PersonIcon from "@material-ui/icons/Person";
 import HomeIcon from "@material-ui/icons/Home";
 import Logout from "../../auth/components/Logout";
+import GroupIcon from "@material-ui/icons/Group";
 function Navbar() {
   let toggle = false;
   if (isAuthenticated()) {
@@ -23,11 +24,15 @@ function Navbar() {
         <div className="navigation-item">
           <NavLink end to="/">
             <HomeIcon />
-            <p>Home</p>
+            <p className="navigation-item-name">Home</p>
+          </NavLink>
+          <NavLink to="/users">
+            <GroupIcon />
+            <p className="navigation-item-name">Users</p>
           </NavLink>
           <NavLink to={`/${userInfo().user.name}/${userInfo().user._id}`}>
             <PersonIcon />
-            <p style={{ color: "black" }}>{userInfo().user.name}</p>
+            <p className="navigation-item-name">{userInfo().user.name}</p>
           </NavLink>
           <Logout />
         </div>
