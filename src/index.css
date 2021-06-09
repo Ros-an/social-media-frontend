@@ -2,6 +2,8 @@
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
@@ -30,10 +32,10 @@ body {
   margin: 0;
 }
 main {
-  min-height: 80vh;
-  margin: 0 15%;
-  transition: all 1.2s linear;
-  background: var(--color-cream);
+  min-height: 85vh;
+  margin: 1% 15%;
+  transition: all 0.3s linear;
+  box-shadow: 0px 2px 8px 1px rgba(0, 0, 0, 0.21);
 }
 .pointer-cursor {
   cursor: pointer;
