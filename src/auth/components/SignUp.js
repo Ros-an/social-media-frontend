@@ -46,7 +46,7 @@ function SignUp({ toggleForm }) {
       // post request to backend
       try {
         const { data, status } = await axios.post(
-          "http://localhost:8080/signup",
+          `${process.env.REACT_APP_API_URL}/signup`,
           user
         );
         console.log(data, status);

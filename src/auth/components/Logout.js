@@ -12,7 +12,10 @@ function Logout() {
       dispatch({ type: "SHOW_LOADER" });
     }
     try {
-      const response = await axios.get("http://localhost:8080/signout");
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/signout`
+      );
+
       console.log(response);
     } catch (err) {
       console.log(err.response);
@@ -25,7 +28,7 @@ function Logout() {
       onClick={() => logoutUser()}
     >
       <ExitToAppIcon />
-      <p>Log out</p>
+      <p className="navigation-item-name">Log out</p>
     </div>
   );
 }
