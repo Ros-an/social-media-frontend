@@ -8,7 +8,7 @@ function Home() {
   if (!isAuthenticated()) {
     return <Navigate to="/authenticate" />;
   }
-  return <div>roshan</div>;
+  return <div className="container">roshan</div>;
 }
 function Routing() {
   return (
