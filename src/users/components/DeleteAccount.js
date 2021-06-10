@@ -1,0 +1,30 @@
+import React from "react";
+import DeleteIcon from "@material-ui/icons/Delete";
+import { deleteUserAccount } from "../index";
+import { logoutUser } from "../../auth/index";
+import { userInfo } from "../../utils/authrelated";
+import { useAuthContext } from "../../context-api/auth-context";
+
+function DeleteAccount({ userId }) {
+  const { dispatch } = useAuthContext();
+  const deleteAccount = () => {
+    deleteUserAccount({ logoutUser, dispatch, userId, userInfo });
+  };
+  const deleteConfirm = () => {
+    const answer = window.confirm(
+      "Are you sure, you wanna delete your account ?"
+    );
+    console.log(answer);
+    if (answer) {
+      deleteAccount();
+    }
+  };
+  return (
+    <div className="delete-account" title="Delete Account">
+      <DeleteIcon onClick={() => deleteConfirm()} />
+      <small>Delete</small>
+    </div>
+  );
+}
+
+export default DeleteAccount;
