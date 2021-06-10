@@ -1,34 +1,16 @@
-import axios from "axios";
 import React from "react";
 import { useAuthContext } from "../../context-api/auth-context";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-
+import { logoutUser } from "../index";
 function Logout() {
   const { dispatch } = useAuthContext();
-
-  const logoutUser = async () => {
-    if (typeof window !== "undefined") {
-      localStorage.removeItem("jwt");
-      dispatch({ type: "SHOW_LOADER" });
-    }
-    try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/signout`
-      );
-
-      console.log(response);
-    } catch (err) {
-      console.log(err.response);
-    }
-  };
-
   return (
     <div
       className="navigation-item--link pointer-cursor"
-      onClick={() => logoutUser()}
+      onClick={() => logoutUser(dispatch)}
     >
       <ExitToAppIcon />
-      <p className="navigation-item-name">Log out</p>
+      <p>Logout</p>
     </div>
   );
 }
