@@ -1,0 +1,77 @@
+.profile-card {
+  position: relative;
+  background: white;
+  border-radius: 0.75rem 0.75rem 0 0;
+  box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.125);
+}
+.profile-card .profile-background img {
+  width: 100%;
+  height: 15rem;
+  transition: all 0.3s linear;
+  border-radius: 0.75rem 0.75rem 0 0;
+  object-fit: cover;
+}
+.profile-card .profile-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  padding: 0.25rem;
+  background: white;
+  transform: translate(2rem, 10rem);
+  transition: all 0.3s linear;
+}
+.profile-card .profile-detail {
+  padding: 5rem 1rem 1rem 2rem;
+  position: relative;
+}
+.profile-card .profile-detail .name {
+  font-size: 1.4rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+.profile-card .profile-detail .email {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: gray;
+}
+.profile-card .profile-detail .joined {
+  font-size: 0.8rem;
+  text-align: right;
+}
+.profile-card .profile-detail .joined span {
+  font-weight: 500;
+}
+.profile-card .profile-detail .profile-control {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  display: flex;
+  color: gray;
+}
+.profile-card .profile-detail .profile-control div {
+  cursor: pointer;
+  margin-left: 0.25rem;
+}
+.profile-card .profile-detail .profile-control div small {
+  color: black;
+}
+
+/* --------------------------------------- */
+@media screen and (max-width: 780px) {
+  .profile-card .profile-background img {
+    width: 100%;
+    height: 10rem;
+  }
+  .profile-card .profile-img {
+    width: 7rem;
+    height: 7rem;
+    transform: translate(1rem, 6.5rem);
+  }
+  .profile-card .profile-detail {
+    padding-top: 3.25rem;
+    padding-left: 1rem;
+  }
+}
