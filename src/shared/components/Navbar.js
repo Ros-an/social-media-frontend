@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 import { isAuthenticated, userInfo } from "../../utils/authrelated";
-import PersonIcon from "@material-ui/icons/Person";
+import Avatar from "../../assets/avatar.jpg";
 import HomeIcon from "@material-ui/icons/Home";
 import Logout from "../../auth/components/Logout";
 import GroupIcon from "@material-ui/icons/Group";
@@ -24,15 +24,21 @@ function Navbar() {
         <div className="navigation-item">
           <NavLink end to="/">
             <HomeIcon />
-            <p className="navigation-item-name">Home</p>
+            <p>Home</p>
           </NavLink>
           <NavLink to="/users">
             <GroupIcon />
-            <p className="navigation-item-name">Users</p>
+            <p>Users</p>
           </NavLink>
-          <NavLink to={`/${userInfo().user.name}/${userInfo().user._id}`}>
-            <PersonIcon />
-            <p className="navigation-item-name">{userInfo().user.name}</p>
+          <NavLink
+            to={`/${userInfo().user.name}/${userInfo().user._id}`}
+            activeStyle={{
+              fontWeight: "500",
+              color: "black",
+            }}
+          >
+            <img src={Avatar} alt="avatar" />
+            <p>{userInfo().user.name.split(" ")[0]}</p>
           </NavLink>
           <Logout />
         </div>
