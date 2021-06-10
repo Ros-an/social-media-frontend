@@ -77,7 +77,7 @@ function SignUp({ toggleForm }) {
           onChange={handleChange}
           type="text"
           name="name"
-          placeholder="Username"
+          placeholder="Full Name"
           value={name}
         />
         <input
