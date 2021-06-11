@@ -5,8 +5,8 @@ import { Navigate, useParams } from "react-router-dom";
 import { getUserData } from "../index";
 import ProfileImage from "../../assets/avatar.jpg";
 import BackgroundImage from "../../assets/background.jpg";
-import DeleteAccount from "../components/DeleteAccount";
-import EditAccount from "../components/EditAccount";
+import DeleteProfile from "../components/DeleteProfile";
+import EditProfile from "../components/EditProfile";
 
 import "./Profile.css";
 
@@ -41,8 +41,8 @@ function Profile() {
             </p>
             {isAuthenticated() && userInfo().user._id === userData._id && (
               <div className="profile-control">
-                <EditAccount />
-                <DeleteAccount userId={userData._id} />
+                <EditProfile />
+                <DeleteProfile userId={userData._id} />
               </div>
             )}
           </div>

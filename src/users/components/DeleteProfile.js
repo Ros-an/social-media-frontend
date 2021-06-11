@@ -5,7 +5,7 @@ import { logoutUser } from "../../auth/index";
 import { userInfo } from "../../utils/authrelated";
 import { useAuthContext } from "../../context-api/auth-context";
 
-function DeleteAccount({ userId }) {
+function DeleteProfile({ userId }) {
   const { dispatch } = useAuthContext();
   const deleteAccount = () => {
     deleteUserAccount({ logoutUser, dispatch, userId, userInfo });
@@ -27,4 +27,4 @@ function DeleteAccount({ userId }) {
   );
 }
 
-export default DeleteAccount;
+export default DeleteProfile;

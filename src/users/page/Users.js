@@ -4,7 +4,6 @@ import { Navigate } from "react-router-dom";
 import { ContentLoader } from "../../shared/components/Loader";
 import UserCard from "../components/UserCard";
 import { getAllUsers } from "../index";
-import "./Users.css";
 function Users() {
   const [users, setUsers] = useState("");
 
