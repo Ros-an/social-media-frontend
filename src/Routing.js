@@ -3,6 +3,7 @@ import { isAuthenticated } from "./utils/authrelated";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Profile from "./users/page/Profile";
 import Users from "./users/page/Users";
+import EditProfileForm from "./users/page/EditProfileForm";
 
 function Home() {
   if (!isAuthenticated()) {
@@ -16,6 +17,7 @@ function Routing() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/users" element={<Users />} />
+        <Route path="/:user/edit/:userId" element={<EditProfileForm />} />
         <Route path="/:user/:userId" element={<Profile />} />
         <Route path="/authenticate" element={<Authenticate />} />
       </Routes>

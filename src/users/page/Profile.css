@@ -55,9 +55,6 @@
   cursor: pointer;
   margin-left: 0.25rem;
 }
-.profile-card .profile-detail .profile-control div small {
-  color: black;
-}
 
 /* --------------------------------------- */
 @media screen and (max-width: 780px) {

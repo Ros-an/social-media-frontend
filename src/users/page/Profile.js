@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { ContentLoader } from "../../shared/components/Loader";
 import { isAuthenticated, userInfo } from "../../utils/authrelated";
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useParams, Link } from "react-router-dom";
 import { getUserData } from "../index";
 import ProfileImage from "../../assets/avatar.jpg";
 import BackgroundImage from "../../assets/background.jpg";
 import DeleteProfile from "../components/DeleteProfile";
-import EditProfile from "../components/EditProfile";
+import EditIcon from "@material-ui/icons/Edit";
 
 import "./Profile.css";
 
@@ -41,7 +41,14 @@ function Profile() {
             </p>
             {isAuthenticated() && userInfo().user._id === userData._id && (
               <div className="profile-control">
-                <EditProfile />
+                <Link
+                  to={`${userData.name}/edit/${userData._id}`}
+                  title="Edit Profile"
+                  style={{ textDecoration: "none", color: "skyblue" }}
+                >
+                  <EditIcon />
+                  <small style={{ color: "black" }}>Edit</small>
+                </Link>
                 <DeleteProfile userId={userData._id} />
               </div>
             )}
