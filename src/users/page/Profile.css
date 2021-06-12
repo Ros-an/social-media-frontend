@@ -49,7 +49,6 @@
   top: 0.5rem;
   right: 1rem;
   display: flex;
-  color: gray;
 }
 .profile-card .profile-detail .profile-control div {
   cursor: pointer;
