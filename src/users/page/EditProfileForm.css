@@ -1,0 +1,43 @@
+.edit-form h2 {
+  font-weight: 500;
+  text-align: center;
+  margin: 1rem 0 2rem 0;
+}
+.edit-form form {
+  padding: 0 5vw;
+}
+.edit-form form p {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-top: 2rem;
+}
+.edit-form form input {
+  font-family: inherit;
+  width: 100%;
+  font-weight: 300;
+  font-size: 0.875rem;
+  padding-left: 0.25rem;
+  border: none;
+  border-bottom: 1px solid gray;
+  border-left: 1px solid gray;
+  outline: none;
+  box-shadow: none;
+  letter-spacing: 1px;
+}
+.edit-form form .update {
+  display: block;
+  width: 6.5rem;
+  height: 2.25rem;
+  margin-left: auto;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 400;
+  border-color: var(--color-cream);
+  background: var(--color-cream);
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+.edit-form form .error {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
