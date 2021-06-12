@@ -20,9 +20,15 @@ function DeleteProfile({ userId }) {
     }
   };
   return (
-    <div className="delete-account" title="Delete Account">
-      <DeleteIcon onClick={() => deleteConfirm()} style={{ color: "red" }} />
-      <small>Delete</small>
+    <div
+      className="delete-account"
+      title="Delete Account"
+      onClick={() => deleteConfirm()}
+    >
+      <DeleteIcon style={{ color: "red" }} />
+      <small style={{ color: "black", textDecoration: "underline" }}>
+        Delete
+      </small>
     </div>
   );
 }
