@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <main className="content">
+      <main>
         <Routing />
       </main>
       {loader && <LoaderBig />}
