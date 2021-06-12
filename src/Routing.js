@@ -17,8 +17,8 @@ function Routing() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/users" element={<Users />} />
-        <Route path="/:user/edit/:userId" element={<EditProfileForm />} />
         <Route path="/:user/:userId" element={<Profile />} />
+        <Route path="/:user/edit/:userId" element={<EditProfileForm />} />
         <Route path="/authenticate" element={<Authenticate />} />
       </Routes>
     </>
