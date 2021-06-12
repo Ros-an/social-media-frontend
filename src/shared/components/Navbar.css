@@ -12,18 +12,16 @@
   align-items: center;
   align-content: center;
 }
-.navigation a,
-.navigation-item--link {
-  text-decoration: none;
-  color: var(--color-light);
-}
+
 .navigation .logo {
   font-family: "Satisfy", cursive;
   font-weight: 500;
   font-size: 2.25rem;
   cursor: pointer;
   padding-left: 8vw;
+  transition: all 0.3s linear;
   color: var(--color-light);
+  text-decoration: none;
 }
 
 .navigation .navigation-item {
@@ -35,9 +33,13 @@
   align-content: center;
 }
 
-.navigation .navigation-item a,
-.navigation .navigation-item .navigation-item--link {
-  padding: 0 3vw;
+.navigation .navigation-item .link {
+  color: var(--color-light);
+}
+.navigation .navigation-item .link,
+.navigation .navigation-item .navigation-item--user {
+  text-decoration: none;
+  min-width: 6rem;
   font-size: 1.1rem;
   height: 100%;
   display: flex;
@@ -45,41 +47,47 @@
   flex-direction: column;
   justify-content: center;
   border-bottom: 3px solid transparent;
-  transition: all 0.3s linear;
+  transition: all 0.1s linear;
 }
-.navigation .navigation-item a p,
-.navigation .navigation-item .navigation-item--link p {
+
+.navigation .navigation-item .link p,
+.navigation .navigation-item .navigation-item--user {
   font-size: 0.75rem;
   margin: 0;
 }
-.navigation .navigation-item a:hover,
-.navigation .navigation-item .navigation-item--link:hover {
-  background: var(--color-light);
-  color: var(--color-lightblue);
-  transition: all 0.1s linear;
+.navigation .navigation-item .navigation-item--user .account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
 }
-.navigation .navigation-item .navigation-item--link:active,
-.navigation .navigation-item a:active,
-.navigation .navigation-item a.active {
-  border-color: var(--color-cream);
-  background: var(--color-light);
-  color: var(--color-lightblue);
-  transition: 0.1s;
+.navigation .navigation-item .link:hover {
+  color: black;
 }
-.navigation .navigation-item a:nth-child(3) img {
+.navigation .navigation-item .link:active,
+.navigation .navigation-item .link.active {
+  color: black;
+  border-bottom: 3px solid black;
+}
+
+.navigation .navigation-item .navigation-item--user img {
   height: 1.5rem;
   width: 1.5rem;
   border-radius: 50%;
 }
+
 /* --------small screen------- */
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 580px) {
   .navigation .logo {
     font-size: 2rem;
     padding-left: 2vw;
   }
-  .navigation .navigation-item a,
-  .navigation .navigation-item .navigation-item--link {
-    font-size: 0.75rem;
+  .navigation .navigation-item .link,
+  .navigation .navigation-item .navigation-item--user {
+    min-width: 3rem;
+  }
+  .navigation .navigation-item .link p {
+    display: none;
   }
 }

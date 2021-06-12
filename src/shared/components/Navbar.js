@@ -1,16 +1,16 @@
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
-import { isAuthenticated, userInfo } from "../../utils/authrelated";
+import { isAuthenticated } from "../../utils/authrelated";
 import Avatar from "../../assets/avatar.jpg";
+import NotificationsIcon from "@material-ui/icons/Notifications";
 import HomeIcon from "@material-ui/icons/Home";
-import Logout from "../../auth/components/Logout";
+import DropDown from "./DropDown";
 import GroupIcon from "@material-ui/icons/Group";
 function Navbar() {
   let toggle = false;
   if (isAuthenticated()) {
     toggle = true;
   }
-
   return (
     <section className="navigation">
       <NavLink
@@ -22,25 +22,25 @@ function Navbar() {
       </NavLink>
       {toggle && (
         <div className="navigation-item">
-          <NavLink end to="/">
+          <NavLink className="link" end to="/">
             <HomeIcon />
             <p>Home</p>
           </NavLink>
-          <NavLink to="/users">
+          <NavLink className="link" to="/users">
             <GroupIcon />
             <p>Users</p>
           </NavLink>
-          <NavLink
-            to={`/${userInfo().user.name}/${userInfo().user._id}`}
-            activeStyle={{
-              fontWeight: "500",
-              color: "black",
-            }}
-          >
-            <img src={Avatar} alt="avatar" />
-            <p>{userInfo().user.name.split(" ")[0]}</p>
+          <NavLink className="link" to="/notification">
+            <NotificationsIcon />
+            <p>Notifications</p>
           </NavLink>
-          <Logout />
+          <div className="navigation-item--user">
+            <img src={Avatar} alt="avatar" />
+            <div className="account">
+              <span>Me</span>
+              <DropDown />
+            </div>
+          </div>
         </div>
       )}
     </section>
