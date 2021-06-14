@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { ContentLoader } from "../../shared/components/Loader";
 import { isAuthenticated, userInfo } from "../../utils/authrelated";
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getUserData } from "../index";
 import ProfileImage from "../../assets/avatar.jpg";
 import BackgroundImage from "../../assets/background.jpg";
-import DeleteProfile from "../components/DeleteProfile";
-import EditProfile from "../components/EditProfile";
+import DeleteProfileBtn from "../components/DeleteProfileBtn";
+import EditProfileBtn from "../components/EditProfileBtn";
 
 import "./Profile.css";
 
@@ -18,10 +18,6 @@ function Profile() {
     getUserData({ userId, setUserData, userInfo });
     console.log("profile useEffect");
   }, [userId]);
-
-  if (!isAuthenticated()) {
-    return <Navigate to="/authenticate" />;
-  }
 
   return (
     <>
@@ -41,8 +37,8 @@ function Profile() {
             </p>
             {isAuthenticated() && userInfo().user._id === userData._id && (
               <div className="profile-control">
-                <EditProfile />
-                <DeleteProfile userId={userData._id} />
+                <EditProfileBtn />
+                <DeleteProfileBtn userId={userData._id} />
               </div>
             )}
           </div>

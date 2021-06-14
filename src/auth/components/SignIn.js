@@ -1,12 +1,14 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Loader } from "../../shared/components/Loader";
-import { Link, Navigate } from "react-router-dom";
-import { useAuthContext } from "../../context-api/auth-context";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useGeneralContext } from "../../context-api/GeneralTaskProvider";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 
 function SignIn({ toggleForm }) {
+  let navigate = useNavigate();
+  const { state } = useLocation();
   const [errorMessage, setErrorMessage] = useState("");
   const [formField, setFormField] = useState({
     email: "",
@@ -14,16 +16,14 @@ function SignIn({ toggleForm }) {
   });
   const [isLoading, setLoading] = useState(false);
   const [passwordVisibililty, setPasswordVisibility] = useState(false);
-  const [redirectToHome, setRedirect] = useState(false);
-  const { dispatch } = useAuthContext();
+  const { dispatch } = useGeneralContext();
 
   const { email, password } = formField;
   const readyToSubmit = email && password;
-
-  const authenticate = (jwt, next) => {
+  const authenticate = (jwt) => {
     if (typeof window !== "undefined") {
       localStorage.setItem("jwt", JSON.stringify(jwt));
-      next();
+      navigate(state?.from ? state.from : "/");
     }
   };
   const handleChange = (event) => {
@@ -37,33 +37,28 @@ function SignIn({ toggleForm }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (readyToSubmit) {
-      setLoading(true);
       try {
         const user = {
           email,
           password,
         };
+        setLoading(true);
         const { data, status } = await axios.post(
           `${process.env.REACT_APP_API_URL}/signin`,
           user
         );
         if (data.success && status === 200) {
           const { token, user } = data;
-          authenticate({ user, token }, () => {
-            setRedirect(true);
-          });
+          authenticate({ user, token });
         }
       } catch (err) {
-        return setErrorMessage(err.response.data.message);
-      } finally {
         setLoading(false);
+        return setErrorMessage(err.response.data.message);
       }
       dispatch({ type: "SHOW_LOADER" });
     }
   };
-  if (redirectToHome) {
-    return <Navigate to="/" />;
-  }
+
   return (
     <>
       <form onSubmit={handleSubmit}>

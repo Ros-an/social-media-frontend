@@ -6,7 +6,10 @@ import { Link } from "react-router-dom";
 function UserCard({ data }) {
   return (
     <div className="user-card">
-      <Link to={`/${data.name}/${data._id}`} className="user-card__info">
+      <Link
+        to={`/${data.name.split(" ")[0]}/${data._id}`}
+        className="user-card__info"
+      >
         <img src={DefaultAvatar} alt="user" />
         <div className="user-detail">
           <p className="user-name">{data.name}</p>

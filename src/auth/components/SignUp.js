@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Loader } from "../../shared/components/Loader";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useAuthContext } from "../../context-api/auth-context";
+import { useGeneralContext } from "../../context-api/GeneralTaskProvider";
 
 function SignUp({ toggleForm }) {
-  const { dispatch } = useAuthContext();
+  const { dispatch } = useGeneralContext();
   const [isLoading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [formField, setFormField] = useState({

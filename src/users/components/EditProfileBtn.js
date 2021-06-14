@@ -3,10 +3,10 @@ import EditIcon from "@material-ui/icons/Edit";
 import { Link } from "react-router-dom";
 import { userInfo } from "../../utils/authrelated";
 
-function EditProfile() {
+function EditProfileBtn() {
   return (
     <Link
-      to={`/${userInfo().user.name}/edit/${userInfo().user._id}/`}
+      to={`/${userInfo().user.name.split(" ")[0]}/edit/${userInfo().user._id}/`}
       title="Edit Profile"
     >
       <EditIcon style={{ color: "var(--color-lightblue)" }} />
@@ -15,4 +15,4 @@ function EditProfile() {
   );
 }
 
-export default EditProfile;
+export default EditProfileBtn;

@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuthContext } from "../../context-api/auth-context";
+import { useGeneralContext } from "../../context-api/GeneralTaskProvider";
 import "./Loader.css";
 
 const customStyleOne = {
@@ -35,7 +35,7 @@ function ContentLoader() {
 }
 
 function LoaderBig() {
-  const { closeLoader, loader } = useAuthContext();
+  const { closeLoader, loader } = useGeneralContext();
   if (loader) {
     console.log("loader is on");
     setTimeout(() => closeLoader(), 1250);

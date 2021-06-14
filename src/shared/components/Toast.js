@@ -1,8 +1,8 @@
 import "./Toast.css";
-import { useAuthContext } from "../../context-api/auth-context";
+import { useGeneralContext } from "../../context-api/GeneralTaskProvider";
 
 function Toast() {
-  const { closeToast, toastMessage, toast } = useAuthContext();
+  const { closeToast, toastMessage, toast } = useGeneralContext();
   if (toast) {
     console.log("close toast");
     setTimeout(() => closeToast(), 3000);

@@ -5,19 +5,20 @@ import { userDataForEdit, updateProfile } from "../index";
 import { Navigate } from "react-router-dom";
 import { Loader } from "../../shared/components/Loader";
 
-import "./EditProfileForm.css";
-function EditProfileForm() {
+import "./EditProfile.css";
+
+function EditProfile() {
   const { userId } = useParams();
   const [errorMessage, setErrorMessage] = useState("");
   const [navigation, setNavigation] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const [data, setData] = useState({
-    _id: "",
     name: "",
     email: "",
     password: "",
   });
   const { name, email, password } = data;
+
   const handleOnChange = (event) => {
     const { name, value } = event.target;
     setErrorMessage("");
@@ -26,19 +27,22 @@ function EditProfileForm() {
       [name]: value,
     }));
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    setLoading(true);
+
     if (name.length < 3) {
-      return setErrorMessage("username length atleast 3");
+      return setErrorMessage("Name length atleast 3");
     }
-    if (password.length > 0) {
-      if (password.length < 8) {
-        return setErrorMessage("password must be of atleast 8 characters");
-      }
+    if (email.length < 1) {
+      return setErrorMessage("Email is required!");
     }
-    console.log(data);
+    if (password.length > 0 && password.length < 8) {
+      return setErrorMessage("password must be of atleast 8 characters");
+    }
+
     if (name && email) {
+      setLoading(true);
       let user;
       if (!password) {
         user = { name, email };
@@ -55,15 +59,21 @@ function EditProfileForm() {
       });
     }
   };
+
   useEffect(() => {
     userDataForEdit({ setData, userId, userInfo });
   }, [userId]);
+
   if (navigation) {
-    return <Navigate to={`/${userInfo().user.name}/${userId}`} />;
+    return <Navigate to={`/${userInfo().user.name.split(" ")[0]}/${userId}`} />;
   }
+
   return (
     <div className="container edit-form">
-      <h2>Edit Profile Form</h2>
+      <button className="back-btn" onClick={() => setNavigation(true)}>
+        back
+      </button>
+      <h2>Edit Profile</h2>
       <form onSubmit={handleSubmit}>
         <p>Name</p>
         <input
@@ -96,4 +106,4 @@ function EditProfileForm() {
   );
 }
 
-export default EditProfileForm;
+export default EditProfile;

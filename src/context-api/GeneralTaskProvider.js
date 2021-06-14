@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer } from "react";
 
-const AuthContext = createContext();
+const GeneralContext = createContext();
 
 const initialState = {
   toast: false,
@@ -42,7 +42,7 @@ const reducer = (state, action) => {
       return state;
   }
 };
-export const AuthProvider = ({ children }) => {
+export const GeneralTaskProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const closeToast = () => {
@@ -52,17 +52,17 @@ export const AuthProvider = ({ children }) => {
     dispatch({ type: "CLOSE_LOADER" });
   };
   if (!state.x) {
-    console.log("authcontext se control");
+    console.log("GeneralContext se control");
     dispatch({ type: "ONPAGE_LOAD" });
   }
   return (
-    <AuthContext.Provider
+    <GeneralContext.Provider
       value={{ ...state, dispatch, closeLoader, closeToast }}
     >
       {children}
-    </AuthContext.Provider>
+    </GeneralContext.Provider>
   );
 };
-export const useAuthContext = () => {
-  return useContext(AuthContext);
+export const useGeneralContext = () => {
+  return useContext(GeneralContext);
 };

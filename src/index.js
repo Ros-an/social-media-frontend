@@ -1,16 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
-import { AuthProvider } from "./context-api/auth-context";
+import { GeneralTaskProvider } from "./context-api/GeneralTaskProvider";
 import "./index.css";
 import App from "./App";
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <AuthProvider>
+      <GeneralTaskProvider>
         <App />
-      </AuthProvider>
+      </GeneralTaskProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")

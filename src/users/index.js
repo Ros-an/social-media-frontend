@@ -68,7 +68,6 @@ export const userDataForEdit = async ({ userId, setData, userInfo }) => {
     if (data.success && status === 200) {
       setData((prevValue) => ({
         ...prevValue,
-        _id: data.user._id,
         name: data.user.name,
         email: data.user.email,
       }));

@@ -3,10 +3,10 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import { deleteUserAccount } from "../index";
 import { logoutUser } from "../../auth/index";
 import { userInfo } from "../../utils/authrelated";
-import { useAuthContext } from "../../context-api/auth-context";
+import { useGeneralContext } from "../../context-api/GeneralTaskProvider";
 
-function DeleteProfile({ userId }) {
-  const { dispatch } = useAuthContext();
+function DeleteProfileBtn({ userId }) {
+  const { dispatch } = useGeneralContext();
   const deleteAccount = () => {
     deleteUserAccount({ logoutUser, dispatch, userId, userInfo });
   };
@@ -33,4 +33,4 @@ function DeleteProfile({ userId }) {
   );
 }
 
-export default DeleteProfile;
+export default DeleteProfileBtn;

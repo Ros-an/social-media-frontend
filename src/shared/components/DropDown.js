@@ -19,7 +19,9 @@ function DropDown() {
         className={`dropdown-list ${toggle && "hide"}`}
         onClick={() => setToggle(!toggle)}
       >
-        <Link to={`/${userInfo().user.name}/${userInfo().user._id}`}>
+        <Link
+          to={`/${userInfo().user.name.split(" ")[0]}/${userInfo().user._id}`}
+        >
           Profile
         </Link>
         <Logout />
