@@ -1,6 +1,12 @@
 import axios from "axios";
-export const getUserData = async ({ userId, setUserData, userInfo }) => {
+export const getUserData = async ({
+  userId,
+  setUserData,
+  userInfo,
+  setLoading,
+}) => {
   try {
+    setLoading(true);
     const { data, status } = await axios.get(
       `${process.env.REACT_APP_API_URL}/user/${userId}`,
       {
@@ -14,6 +20,8 @@ export const getUserData = async ({ userId, setUserData, userInfo }) => {
     }
   } catch (err) {
     console.log(err.response);
+  } finally {
+    setLoading(false);
   }
 };
 
@@ -58,7 +66,7 @@ export const getAllUsers = async (setUsers) => {
 export const userDataForEdit = async ({ userId, setData, userInfo }) => {
   try {
     const { data, status } = await axios.get(
-      `${process.env.REACT_APP_API_URL}/user/${userId}`,
+      `${process.env.REACT_APP_API_URL}/user/edit/${userId}`,
       {
         headers: {
           Authorization: `Bearer ${userInfo().token}`,
@@ -70,6 +78,7 @@ export const userDataForEdit = async ({ userId, setData, userInfo }) => {
         ...prevValue,
         name: data.user.name,
         email: data.user.email,
+        about: data.user.about,
       }));
     }
   } catch (err) {
@@ -80,7 +89,7 @@ export const userDataForEdit = async ({ userId, setData, userInfo }) => {
 export const updateProfile = async ({
   userInfo,
   userId,
-  user,
+  formData,
   setNavigation,
   setErrorMessage,
   setLoading,
@@ -88,14 +97,13 @@ export const updateProfile = async ({
   try {
     const { data, status } = await axios.post(
       `${process.env.REACT_APP_API_URL}/user/${userId}`,
-      user,
+      formData,
       {
         headers: {
           Authorization: `Bearer ${userInfo().token}`,
         },
       }
     );
-    console.log("updated data", data, status);
     if (data.success && status === 200) {
       setNavigation(true);
     }
