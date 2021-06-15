@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
-import { isAuthenticated } from "../../utils/authrelated";
+import { isAuthenticated, userInfo } from "../../utils/authrelated";
 import Avatar from "../../assets/avatar.jpg";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import HomeIcon from "@material-ui/icons/Home";
@@ -35,7 +35,13 @@ function Navbar() {
             <p>Notifications</p>
           </NavLink>
           <div className="navigation-item--user">
-            <img src={Avatar} alt="avatar" />
+            <img
+              src={`${process.env.REACT_APP_API_URL}/user/photo/${
+                userInfo().user._id
+              }`}
+              onError={(i) => (i.target.src = `${Avatar}`)}
+              alt="avatar"
+            />
             <div className="account">
               <span>Me</span>
               <DropDown />
