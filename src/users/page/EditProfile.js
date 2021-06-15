@@ -8,20 +8,26 @@ import { Loader } from "../../shared/components/Loader";
 import "./EditProfile.css";
 
 function EditProfile() {
+  const formData = new FormData(); //we send this to backend
   const { userId } = useParams();
   const [errorMessage, setErrorMessage] = useState("");
   const [navigation, setNavigation] = useState(false);
   const [isLoading, setLoading] = useState(false);
+
   const [data, setData] = useState({
     name: "",
     email: "",
     password: "",
+    about: "",
   });
-  const { name, email, password } = data;
-
   const handleOnChange = (event) => {
-    const { name, value } = event.target;
-    setErrorMessage("");
+    errorMessage && setErrorMessage("");
+    const { name, files } = event.target;
+
+    const value =
+      name === "userphoto" || name === "background"
+        ? files[0]
+        : event.target.value;
     setData((prevValue) => ({
       ...prevValue,
       [name]: value,
@@ -29,6 +35,7 @@ function EditProfile() {
   };
 
   const handleSubmit = (event) => {
+    const { name, email, password } = data;
     event.preventDefault();
 
     if (name.length < 3) {
@@ -42,17 +49,31 @@ function EditProfile() {
     }
 
     if (name && email) {
-      setLoading(true);
-      let user;
-      if (!password) {
-        user = { name, email };
-      } else {
-        user = { name, email, password };
+      formData.set("name", name);
+      formData.set("email", email);
+      formData.set("about", data.about);
+      if (data.userphoto) {
+        if (data.userphoto.size < 120000) {
+          formData.set("userphoto", data.userphoto);
+        } else {
+          return setErrorMessage("profile photo should be less than  120KB");
+        }
       }
+      if (data.background) {
+        if (data.background.size < 250000) {
+          formData.set("background", data.background);
+        } else {
+          return setErrorMessage("background image should be less than  250KB");
+        }
+      }
+      data.background && formData.set("background", data.background);
+      password && formData.set("password", password);
+
+      setLoading(true);
       updateProfile({
         userInfo,
         userId,
-        user,
+        formData,
         setNavigation,
         setErrorMessage,
         setLoading,
@@ -69,40 +90,67 @@ function EditProfile() {
   }
 
   return (
-    <div className="container edit-form">
-      <button className="back-btn" onClick={() => setNavigation(true)}>
-        back
-      </button>
-      <h2>Edit Profile</h2>
-      <form onSubmit={handleSubmit}>
-        <p>Name</p>
-        <input
-          type="text"
-          name="name"
-          placeholder="FullName"
-          value={data.name}
-          onChange={handleOnChange}
-        />
-        <p>Email</p>
-        <input
-          type="email"
-          name="email"
-          placeholder="Email Address"
-          value={data.email}
-          onChange={handleOnChange}
-        />
-        <p>Password</p>
-        <input
-          type="password"
-          name="password"
-          placeholder="update password"
-          value={data.password}
-          onChange={handleOnChange}
-        />
-        <p className="error">{errorMessage}</p>
-        <button className="update">{isLoading ? <Loader /> : "UPDATE"}</button>
-      </form>
-    </div>
+    <>
+      <div className="container edit-form">
+        <button className="back-btn" onClick={() => setNavigation(true)}>
+          back
+        </button>
+        <h2>Edit Profile</h2>
+        <form onSubmit={handleSubmit}>
+          <p className="error">{errorMessage}</p>
+          <label>Background Image</label>
+          <input
+            type="file"
+            name="background"
+            accept="images/*"
+            onChange={handleOnChange}
+          />
+          <label>Profile Pic</label>
+          <input
+            type="file"
+            name="userphoto"
+            accept="images/*"
+            onChange={handleOnChange}
+          />
+          <label>Name</label>
+          <input
+            type="text"
+            name="name"
+            placeholder="FullName"
+            value={data.name}
+            onChange={handleOnChange}
+          />
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email Address"
+            value={data.email}
+            onChange={handleOnChange}
+          />
+          <label>About</label>
+          <textarea
+            type="text"
+            name="about"
+            value={data.about}
+            placeholder="write about yourself"
+            onChange={handleOnChange}
+          />
+
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            placeholder="update password"
+            value={data.password}
+            onChange={handleOnChange}
+          />
+          <button className="update">
+            {isLoading ? <Loader /> : "UPDATE"}
+          </button>
+        </form>
+      </div>
+    </>
   );
 }
 
