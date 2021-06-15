@@ -22,6 +22,7 @@
   background: white;
   transform: translate(2rem, 10rem);
   transition: all 0.3s linear;
+  object-fit: cover;
 }
 .profile-card .profile-detail {
   padding: 5rem 1rem 1rem 2rem;
@@ -33,12 +34,12 @@
   text-transform: capitalize;
 }
 .profile-card .profile-detail .email {
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 300;
   color: gray;
 }
 .profile-card .profile-detail .joined {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   text-align: right;
 }
 .profile-card .profile-detail .joined span {
