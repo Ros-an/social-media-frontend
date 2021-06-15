@@ -32,8 +32,22 @@ body {
   margin: 0;
   background: whitesmoke;
 }
+body::-webkit-scrollbar {
+  width: 0.75rem;
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--color-light);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--color-lightblue);
+  border-radius: 1.25rem;
+  border: 3px solid var(--color-light);
+}
 main {
-  margin: 3% 22.5%;
+  min-height: 80vh;
+  margin: 3% 20%;
   transition: all 0.6s linear;
 }
 main .container {
