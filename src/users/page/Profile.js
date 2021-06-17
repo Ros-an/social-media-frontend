@@ -2,28 +2,39 @@ import React, { useState, useEffect } from "react";
 import { ContentLoader } from "../../shared/components/Loader";
 import { isAuthenticated, userInfo } from "../../utils/authrelated";
 import { useParams } from "react-router-dom";
-import { getUserData } from "../index";
+import { getUserData, followUser, unFollowUser } from "../index";
 import ProfileImage from "../../assets/avatar.jpg";
 import Image from "../components/Image";
 import BackgroundImage from "../../assets/background.jpg";
 import DeleteProfileBtn from "../components/DeleteProfileBtn";
 import EditProfileBtn from "../components/EditProfileBtn";
 import About from "../components/About";
+import FollowUnFollowBtn from "../components/FollowUnFollowBtn";
 
 import "./Profile.css";
 
 function Profile() {
   const { userId } = useParams();
   const [userData, setUserData] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loader, setLoader] = useState(false);
 
+  const follow = () => {
+    const userId = userInfo().user._id;
+    const followId = userData._id;
+    followUser({ userId, followId, userInfo, setUserData });
+  };
+  const unFollow = () => {
+    const userId = userInfo().user._id;
+    const unFollowId = userData._id;
+    unFollowUser({ userId, unFollowId, userInfo, setUserData });
+  };
   useEffect(() => {
-    getUserData({ userId, setUserData, userInfo, setLoading });
+    getUserData({ userId, setUserData, userInfo, setLoader });
     console.log("profile useEffect");
   }, [userId]);
   return (
     <>
-      {loading && <ContentLoader />}
+      {loader && <ContentLoader />}
       {userData && (
         <>
           <section className="profile-card">
@@ -49,12 +60,20 @@ function Profile() {
                 <span>Joined:</span>{" "}
                 {`${new Date(userData.createdAt).toDateString()}`}
               </p>
-              {isAuthenticated() && userInfo().user._id === userData._id && (
-                <div className="profile-control">
-                  <EditProfileBtn />
-                  <DeleteProfileBtn userId={userData._id} />
-                </div>
-              )}
+              <div className="profile-control">
+                {isAuthenticated() && userInfo().user._id === userData._id ? (
+                  <>
+                    <EditProfileBtn />
+                    <DeleteProfileBtn userId={userData._id} />
+                  </>
+                ) : (
+                  <FollowUnFollowBtn
+                    data={userData}
+                    follow={follow}
+                    unFollow={unFollow}
+                  />
+                )}
+              </div>
             </div>
           </section>
           <About aboutInfo={userData.about} />

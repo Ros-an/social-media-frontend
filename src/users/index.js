@@ -3,10 +3,10 @@ export const getUserData = async ({
   userId,
   setUserData,
   userInfo,
-  setLoading,
+  setLoader,
 }) => {
   try {
-    setLoading(true);
+    setLoader(true);
     const { data, status } = await axios.get(
       `${process.env.REACT_APP_API_URL}/user/${userId}`,
       {
@@ -15,13 +15,14 @@ export const getUserData = async ({
         },
       }
     );
+    console.log("user-data", data);
     if (data.success && status === 200) {
       setUserData(data.user);
     }
   } catch (err) {
     console.log(err.response);
   } finally {
-    setLoading(false);
+    setLoader(false);
   }
 };
 
@@ -112,5 +113,61 @@ export const updateProfile = async ({
     setErrorMessage(err.response.data.message);
   } finally {
     setLoading(false);
+  }
+};
+
+export const followUser = async ({
+  userId,
+  followId,
+  userInfo,
+  setUserData,
+}) => {
+  try {
+    const { data } = await axios.post(
+      `${process.env.REACT_APP_API_URL}/user/follow`,
+      {
+        userId,
+        followId,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${userInfo().token}`,
+        },
+      }
+    );
+    console.log(data);
+    if (data.success) {
+      setUserData(data.user);
+    }
+  } catch (err) {
+    console.log("this is error", err.response);
+  }
+};
+
+export const unFollowUser = async ({
+  userId,
+  unFollowId,
+  userInfo,
+  setUserData,
+}) => {
+  try {
+    const { data } = await axios.post(
+      `${process.env.REACT_APP_API_URL}/user/unfollow`,
+      {
+        userId,
+        unFollowId,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${userInfo().token}`,
+        },
+      }
+    );
+    console.log(data);
+    if (data.success) {
+      setUserData(data.user);
+    }
+  } catch (err) {
+    console.log("this is error", err.response);
   }
 };
