@@ -1,0 +1,69 @@
+.profile-tab {
+  margin-top: 2%;
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  align-items: center;
+  background: white;
+  box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.125);
+}
+.profile-tab .tab {
+  padding: 0.5rem 0;
+  cursor: pointer;
+  font-size: 1.25rem;
+  width: 100%;
+  text-align: center;
+  border-bottom: 3px solid transparent;
+}
+
+.profile-tab .tab.active-style {
+  color: var(--color-blue);
+  border-color: var(--color-lightblue);
+  transition: all 0.2s ease;
+}
+.profile-tab-body {
+  box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.125);
+  transition: all 0.3s linear;
+  background: white;
+  min-height: 10rem;
+}
+.profile-tab-body .profile-tab__following,
+.profile-tab-body .profile-tab__followers {
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.profile-tab-body .profile-tab__following div,
+.profile-tab-body .profile-tab__followers div {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.25rem 0;
+}
+.profile-tab-body .profile-tab__following div .image-section,
+.profile-tab-body .profile-tab__followers div .image-section {
+  flex: 0.2;
+}
+.profile-tab-body .profile-tab__following div a,
+.profile-tab-body .profile-tab__followers div a {
+  font-weight: 500;
+  line-height: 1rem;
+  flex: 0.8;
+  margin-left: 0.25rem;
+  text-decoration: none;
+  color: black;
+}
+.profile-tab-body .profile-tab__following div a:hover,
+.profile-tab-body .profile-tab__followers div a:hover {
+  color: var(--color-blue);
+}
+
+@media screen and (max-width: 480px) {
+  .profile-tab-body .profile-tab__following,
+  .profile-tab-body .profile-tab__followers {
+    padding: 1rem;
+  }
+}
