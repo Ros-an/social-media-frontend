@@ -54,6 +54,7 @@
 .navigation .navigation-item .navigation-item--user {
   font-size: 0.75rem;
   margin: 0;
+  font-weight: 400;
 }
 .navigation .navigation-item .navigation-item--user .account {
   display: flex;
