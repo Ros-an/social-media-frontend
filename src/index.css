@@ -66,6 +66,12 @@ main .container {
 .pointer-text {
   cursor: text;
 }
+.avatar-img {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
 @media screen and (max-width: 1120px) {
   main {
     margin: 2% 12.5%;
