@@ -10,13 +10,12 @@ import DeleteProfileBtn from "../components/DeleteProfileBtn";
 import EditProfileBtn from "../components/EditProfileBtn";
 import About from "../components/About";
 import FollowUnFollowBtn from "../components/FollowUnFollowBtn";
-
+import ProfileTab from "../components/ProfileTab";
 import "./Profile.css";
 
 function Profile() {
   const { userId } = useParams();
   const [userData, setUserData] = useState("");
-  const [loader, setLoader] = useState(false);
 
   const follow = () => {
     const userId = userInfo().user._id;
@@ -29,13 +28,12 @@ function Profile() {
     unFollowUser({ userId, unFollowId, userInfo, setUserData });
   };
   useEffect(() => {
-    getUserData({ userId, setUserData, userInfo, setLoader });
+    getUserData({ userId, setUserData, userInfo });
     console.log("profile useEffect");
   }, [userId]);
   return (
     <>
-      {loader && <ContentLoader />}
-      {userData && (
+      {userData ? (
         <>
           <section className="profile-card">
             <div className="profile-background">
@@ -56,11 +54,17 @@ function Profile() {
             <div className="profile-detail">
               <h3 className="name">{userData.name}</h3>
               <p className="email">{userData.email}</p>
-              <p className="joined">
-                <span>Joined:</span>{" "}
-                {`${new Date(userData.createdAt).toDateString()}`}
-              </p>
-              <div className="profile-control">
+              <div className="profile-detail--one">
+                <p className="follow-unfollow">
+                  {`${userData.following.length}  Following, `}
+                  {`  ${userData.followers.length}  Follower`}
+                </p>
+                <p className="joined">
+                  <span>Joined:</span>{" "}
+                  {`${new Date(userData.createdAt).toDateString()}`}
+                </p>
+              </div>
+              <div className="profile-detail--two">
                 {isAuthenticated() && userInfo().user._id === userData._id ? (
                   <>
                     <EditProfileBtn />
@@ -77,7 +81,10 @@ function Profile() {
             </div>
           </section>
           <About aboutInfo={userData.about} />
+          <ProfileTab data={userData} />
         </>
+      ) : (
+        <ContentLoader />
       )}
     </>
   );

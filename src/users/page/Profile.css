@@ -38,20 +38,24 @@
   font-weight: 300;
   color: gray;
 }
+.profile-card .profile-detail .profile-detail--one {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .profile-card .profile-detail .joined {
   font-size: 0.85rem;
-  text-align: right;
 }
 .profile-card .profile-detail .joined span {
   font-weight: 500;
 }
-.profile-card .profile-detail .profile-control {
+.profile-card .profile-detail .profile-detail--two {
   position: absolute;
   top: 0.5rem;
   right: 1rem;
   display: flex;
 }
-.profile-card .profile-detail .profile-control div {
+.profile-card .profile-detail .profile-detail--two div {
   cursor: pointer;
   margin-left: 0.25rem;
 }
@@ -70,5 +74,15 @@
   .profile-card .profile-detail {
     padding-top: 3.25rem;
     padding-left: 1rem;
+  }
+}
+@media screen and (max-width: 480px) {
+  .profile-card .profile-detail .profile-detail--one {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .profile-card .profile-detail .profile-detail--one .joined {
+    width: 100%;
+    text-align: right;
   }
 }
