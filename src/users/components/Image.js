@@ -3,7 +3,6 @@ import React, { useEffect, useRef } from "react";
 function Image({ url, photo, id, hasImage, styling }) {
   const imageRef = useRef();
   useEffect(() => {
-    console.log("inside image useEffevt");
     imageRef.current.src = hasImage
       ? `${process.env.REACT_APP_API_URL}/user/${url}/${id}`
       : `${photo}`;

@@ -1,12 +1,6 @@
 import axios from "axios";
-export const getUserData = async ({
-  userId,
-  setUserData,
-  userInfo,
-  setLoader,
-}) => {
+export const getUserData = async ({ userId, setUserData, userInfo }) => {
   try {
-    setLoader(true);
     const { data, status } = await axios.get(
       `${process.env.REACT_APP_API_URL}/user/${userId}`,
       {
@@ -21,8 +15,6 @@ export const getUserData = async ({
     }
   } catch (err) {
     console.log(err.response);
-  } finally {
-    setLoader(false);
   }
 };
 
