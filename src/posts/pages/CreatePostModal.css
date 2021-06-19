@@ -1,9 +1,17 @@
 .modal-position {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
 }
 .transition-modal {
+  z-index: var(--z-index-ten);
   background: white;
   border: none;
   border-radius: 0.5rem;
@@ -68,6 +76,21 @@
   align-items: center;
   padding: 0rem 1.5rem 1rem;
   justify-content: space-between;
+}
+.transition-modal .transition-modal-submit .image-upload {
+  display: flex;
+  align-items: center;
+}
+.transition-modal .transition-modal-submit .image-upload small {
+  font-size: 0.75rem;
+  color: var(--color-lightblue);
+}
+.transition-modal .transition-modal-submit .image-upload-btn {
+  font-size: 2rem;
+}
+.transition-modal .transition-modal-submit .image-upload-btn:hover,
+.transition-modal .transition-modal-submit .image-upload-btn:active {
+  color: var(--color-blue);
 }
 .transition-modal .transition-modal-submit .post-btn {
   padding: 0.25rem 1rem;
