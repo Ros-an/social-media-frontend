@@ -1,11 +1,13 @@
 .user-card {
   display: flex;
+  margin: 1vw 2vw;
   justify-content: space-between;
   align-items: center;
   align-content: center;
-  padding: 2vw 4vw;
-  border-radius: 0.25rem;
-  border: 1px solid transparent;
+  padding: 1vw 4vw;
+  background: white;
+  border: 1px solid rgba(128, 128, 128, 0.4);
+  border-radius: 0.5rem;
 }
 .user-card .user-card__info {
   display: flex;
