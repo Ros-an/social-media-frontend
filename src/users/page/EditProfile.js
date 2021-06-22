@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { userInfo } from "../../utils/authrelated";
+import { userInfo, updateLocalData } from "../../utils/authrelated";
 import { useParams } from "react-router-dom";
 import { userDataForEdit, updateProfile } from "../index";
 import { Navigate } from "react-router-dom";
@@ -77,6 +77,7 @@ function EditProfile() {
         setNavigation,
         setErrorMessage,
         setLoading,
+        updateLocalData,
       });
     }
   };
