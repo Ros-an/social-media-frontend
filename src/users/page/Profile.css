@@ -1,7 +1,6 @@
 .profile-card {
   position: relative;
   background: white;
-  border-radius: 0.75rem 0.75rem 0 0;
   box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.125);
 }
 .profile-card .profile-background img {
