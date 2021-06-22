@@ -3,10 +3,15 @@ import CloseIcon from "@material-ui/icons/Close";
 import DefaultAvatar from "../../assets/avatar.jpg";
 import ImageIcon from "@material-ui/icons/Image";
 import { userInfo } from "../../utils/authrelated";
+import { Loader } from "../../shared/components/Loader";
+import { usePostContext } from "../../context-api/PostProvider";
+import { createPost } from "../postApi";
 import "./CreatePostModal.css";
 
 export default function TransitionsModal() {
+  const { postDispatch } = usePostContext();
   const [modalToggle, setModalToggle] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const fileRef = useRef();
   const formData = new FormData();
@@ -37,9 +42,14 @@ export default function TransitionsModal() {
         return setErrorMessage("image size < 500KB");
       }
     }
-    for (let [name, value] of formData) {
-      console.log(name, value);
-    }
+    createPost({
+      formData,
+      userInfo,
+      setLoading,
+      setModalToggle,
+      setData,
+      postDispatch,
+    });
   };
 
   return (
@@ -80,7 +90,7 @@ export default function TransitionsModal() {
                   className="avatar-img"
                   onError={(i) => (i.target.src = `${DefaultAvatar}`)}
                 />
-                <h3>User name will be here</h3>
+                <h3>{userInfo().user.name}</h3>
               </div>
               <textarea
                 type="text"
@@ -114,12 +124,11 @@ export default function TransitionsModal() {
                 </small>
               </div>
               <button
-                disabled={data.post.length === 0 && true}
-                type="button"
+                disabled={data.post.length < 5 && true}
                 className="post-btn pointer-cursor"
                 onClick={handleSubmit}
               >
-                Post
+                {loading ? <Loader /> : "Post"}
               </button>
             </div>
           </div>

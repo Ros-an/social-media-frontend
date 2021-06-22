@@ -1,3 +1,14 @@
+.transition-modal-button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: white;
+  padding: 1rem;
+  z-index: var(--z-index-five);
+  border-radius: 0.75rem;
+  margin-bottom: 4%;
+  border: 1px solid rgba(128, 128, 128, 0.5);
+}
 .modal-position {
   position: absolute;
   top: 0;
@@ -35,15 +46,10 @@
 .transition-modal #transition-modal-description {
   padding: 0.75rem 1.5rem;
 }
-.transition-modal-button {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
 .transition-modal-button .write-a-post {
   width: 88%;
   margin-left: 2%;
-  height: 4rem;
+  height: 3.25rem;
   font-family: inherit;
   font-size: 1rem;
   color: gray;
@@ -93,8 +99,13 @@
   color: var(--color-blue);
 }
 .transition-modal .transition-modal-submit .post-btn {
-  padding: 0.25rem 1rem;
   border-radius: 1.25rem;
   font-family: inherit;
   font-size: 1rem;
+  border-radius: 2rem;
+  height: 2.25rem;
+  width: 5rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  transition: 0.5s;
 }
