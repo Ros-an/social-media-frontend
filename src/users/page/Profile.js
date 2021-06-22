@@ -35,7 +35,7 @@ function Profile() {
     <>
       {userData ? (
         <>
-          <section className="profile-card">
+          <section className="container profile-card">
             <div className="profile-background">
               <Image
                 url={"background"}
