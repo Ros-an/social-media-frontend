@@ -11,8 +11,8 @@ const customStyleOne = {
 const customStyleTwo = {
   background: "transparent",
   display: "inline-block",
-  width: "2.5em",
-  height: "2.5em",
+  width: "2.5rem",
+  height: "2.5rem",
   transition: "all 1.2s linear",
 };
 const customStyleThree = {
@@ -26,14 +26,6 @@ function Loader() {
   return <div style={customStyleOne} className="lds-dual-ring"></div>;
 }
 
-function ContentLoader() {
-  return (
-    <div className="content-loader">
-      <div style={customStyleThree} className="lds-dual-ring"></div>
-    </div>
-  );
-}
-
 function LoaderBig() {
   const { closeLoader, loader } = useGeneralContext();
   if (loader) {
@@ -43,6 +35,14 @@ function LoaderBig() {
   return (
     <div className="loader-page">
       <div style={customStyleTwo} className="lds-dual-ring"></div>
+    </div>
+  );
+}
+
+function ContentLoader() {
+  return (
+    <div className="content-loader">
+      <div style={customStyleThree} className="lds-dual-ring"></div>
     </div>
   );
 }
