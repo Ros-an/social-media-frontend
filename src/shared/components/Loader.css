@@ -11,14 +11,10 @@
   align-items: center;
 }
 .content-loader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   z-index: var(--z-index-four);
+  border-radius: 0.75rem;
   display: flex;
-  background: white;
+  background: whitesmoke;
   transition: all 0.3s linear;
   justify-content: center;
   align-items: center;
