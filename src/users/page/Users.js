@@ -16,7 +16,7 @@ function Users() {
   }
 
   return (
-    <div className="container">
+    <div className="container users-section">
       {users ? (
         <div className="users">
           {users
