@@ -52,7 +52,6 @@ export const GeneralTaskProvider = ({ children }) => {
     dispatch({ type: "CLOSE_LOADER" });
   };
   if (!state.x) {
-    console.log("GeneralContext se control");
     dispatch({ type: "ONPAGE_LOAD" });
   }
   return (
