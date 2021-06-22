@@ -10,3 +10,11 @@ export const isAuthenticated = () => {
 export const userInfo = () => {
   return JSON.parse(localStorage.getItem("jwt"));
 };
+
+export const updateLocalData = ({ name, email }) => {
+  let existing = localStorage.getItem("jwt");
+  existing = JSON.parse(existing);
+  existing.user.name = name;
+  existing.user.email = email;
+  localStorage.setItem("jwt", JSON.stringify(existing));
+};

@@ -9,7 +9,6 @@ export const getUserData = async ({ userId, setUserData, userInfo }) => {
         },
       }
     );
-    console.log("user-data", data);
     if (data.success && status === 200) {
       setUserData(data.user);
     }
@@ -86,6 +85,7 @@ export const updateProfile = async ({
   setNavigation,
   setErrorMessage,
   setLoading,
+  updateLocalData,
 }) => {
   try {
     const { data, status } = await axios.post(
@@ -98,6 +98,10 @@ export const updateProfile = async ({
       }
     );
     if (data.success && status === 200) {
+      if (data.result._id === userInfo().user._id) {
+        const { name, email } = data.result;
+        updateLocalData({ name, email });
+      }
       setNavigation(true);
     }
   } catch (err) {
