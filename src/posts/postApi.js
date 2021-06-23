@@ -33,3 +33,94 @@ export const createPost = async ({
     setLoading(false);
   }
 };
+
+export const deletePost = async ({
+  userInfo,
+  postId,
+  navigate,
+  dispatch
+}) => {
+  try {
+    const { data, status } = await axios.delete(
+      `${process.env.REACT_APP_API_URL}/post/${postId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${userInfo().token}`,
+        },
+      }
+    );
+    if (data.success && status === 200) {
+      console.log("post created", data);
+      dispatch({type: "TOAST_OPEN", payload: "Deletion of selected post: Successfull !"})
+      navigate(`/${userInfo().user.name.split(" ")[0]}/${userInfo().user._id}`)
+    }
+  } catch (err) {
+    console.log("found error", err.response);
+  }
+};
+
+export const getPostById = async ({
+  postId,
+  setPost,
+}) => {
+  try {
+    const { data, status } = await axios.get(
+      `${process.env.REACT_APP_API_URL}/post/${postId}`
+    );
+    if (data.success && status === 200) {
+      setPost(data.post);
+    }
+  } catch (err) {
+    console.log("found error", err.response);
+  }
+};
+
+
+export const getPostForEdit = async ({
+  postId,
+  setData,
+}) => {
+  try {
+    const { data, status } = await axios.get(
+      `${process.env.REACT_APP_API_URL}/post/${postId}`
+    );
+    if (data.success && status === 200) {
+      setData(prevValue => ({
+        ...prevValue,
+        post: data.post.post
+      }));
+    }
+  } catch (err) {
+    console.log("found error", err.response);
+  }
+};
+
+export const updatePost = async ({
+  userInfo,
+  postId,
+  formData,
+  setNavigation,
+  setErrorMessage,
+  setLoading,
+}) => {
+  try {
+    const { data, status } = await axios.post(
+      `${process.env.REACT_APP_API_URL}/post/${postId}`,
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${userInfo().token}`,
+        },
+      }
+    );
+    if (data.success && status === 200) {
+      console.log("post updated", data);
+      setNavigation(true);
+    }
+  } catch (err) {
+    console.log(err.response);
+    setErrorMessage(err.response.data.message);
+  } finally {
+    setLoading(false);
+  }
+};
