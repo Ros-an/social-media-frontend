@@ -26,7 +26,7 @@ function SinglePost() {
         }
       };
     const navigateToEditPage = () => {
-        navigate(`/${userInfo().user.name.split(" ")[0]}/post/edit/${postId}`)
+        navigate(`/${userInfo().user.name.split(" ")[0]}/post/${postId}/edit`)
     }
     useEffect(()=>{
         getPostById({postId, setPost})

@@ -6,7 +6,7 @@ import { userInfo } from "../../utils/authrelated";
 function EditProfileBtn() {
   return (
     <Link
-      to={`/${userInfo().user.name.split(" ")[0]}/edit/${userInfo().user._id}/`}
+      to={`/${userInfo().user.name.split(" ")[0]}/${userInfo().user._id}/edit`}
       title="Edit Profile"
     >
       <EditIcon style={{ color: "var(--color-lightblue)" }} />

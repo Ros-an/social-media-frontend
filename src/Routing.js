@@ -14,8 +14,8 @@ function Routing() {
         <PrivateRoute exact path="/" element={<Feed />} />
         <PrivateRoute path="/users" element={<Users />} />
         <PrivateRoute path="/:user/:userId" element={<Profile />} />
-        <PrivateRoute path="/:user/edit/:userId" element={<EditProfile />} />
-        <PrivateRoute path="/:user/post/edit/:postId" element={<EditPost />} />
+        <PrivateRoute path="/:user/:userId/edit" element={<EditProfile />} />
+        <PrivateRoute path="/:user/post/:postId/edit" element={<EditPost />} />
         <PrivateRoute path="/:user/post/:postId" element={<SinglePost />} />
         <Route path="/authenticate" element={<Authenticate />} />
       </Routes>
