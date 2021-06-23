@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { userDataForEdit, updateProfile } from "../index";
 import { Navigate } from "react-router-dom";
 import { Loader } from "../../shared/components/Loader";
-
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import "./EditProfile.css";
 
 function EditProfile() {
@@ -93,8 +93,8 @@ function EditProfile() {
   return (
     <>
       <div className="container edit-form">
-        <button className="back-btn" onClick={() => setNavigation(true)}>
-          back
+        <button className="icontype-btn" onClick={() => setNavigation(true)}>
+        <ArrowBackIcon/>
         </button>
         <h2>Edit Profile</h2>
         <form onSubmit={handleSubmit}>
