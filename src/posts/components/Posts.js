@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useCallback } from "react";
 import { usePostContext } from "../../context-api/PostProvider";
-import { userInfo } from "../../utils/authrelated";
 import PostCard from "./PostCard";
 import { ContentLoader } from "../../shared/components/Loader";
+
 import "./Posts.css";
 
 function Posts() {
@@ -11,12 +11,7 @@ function Posts() {
   const getAllPosts = useCallback(async () => {
     try {
       const { data, status } = await axios.get(
-        `${process.env.REACT_APP_API_URL}/posts`,
-        {
-          headers: {
-            Authorization: `Bearer ${userInfo().token}`,
-          },
-        }
+        `${process.env.REACT_APP_API_URL}/posts`
       );
       if (data.success && status === 200) {
         postDispatch({ type: "LOAD_POST_DATA", payload: data.posts });
