@@ -29,7 +29,7 @@ function ProfileTab({ data }) {
         </div>
       </nav>
       <section className="profile-tab-body">
-        {active === "posts" && <PostByUser />}
+        {active === "posts" && <PostByUser id={data._id} />}
         {active === "following" && <Following {...data} />}
         {active === "followers" && <Followers {...data} />}
       </section>
