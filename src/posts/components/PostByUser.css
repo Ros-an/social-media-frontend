@@ -1,0 +1,21 @@
+
+.profile-tab__PostByUser .loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 8rem;
+}
+.profile-tab__PostByUser .post-by-user {
+    padding: 1rem 2rem;
+}
+.profile-tab__PostByUser .post-by-user .post-overview {
+    text-decoration: none;
+}
+.profile-tab__PostByUser .post-by-user .post-overview small {
+    text-decoration: underline;
+    color: var(--color-lightblue);
+}
+.profile-tab__PostByUser .post-by-user .post-overview p{
+    margin-bottom: 1rem;
+    color: black;
+}
