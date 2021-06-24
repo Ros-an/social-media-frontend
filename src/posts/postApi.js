@@ -25,7 +25,7 @@ export const createPost = async ({
         post: "",
       });
       setModalToggle(false);
-      postDispatch({ type: "RELOAD" });
+      postDispatch({ type: "ADD_POST", payload: data.result });
     }
   } catch (err) {
     console.log("found error", err.response);
@@ -38,7 +38,8 @@ export const deletePost = async ({
   userInfo,
   postId,
   navigate,
-  dispatch
+  dispatch,
+  postDispatch
 }) => {
   try {
     const { data, status } = await axios.delete(
@@ -50,9 +51,9 @@ export const deletePost = async ({
       }
     );
     if (data.success && status === 200) {
-      console.log("post created", data);
       dispatch({type: "TOAST_OPEN", payload: "Deletion of selected post: Successfull !"})
       navigate(`/${userInfo().user.name.split(" ")[0]}/${userInfo().user._id}`)
+      postDispatch({type: "REMOVE", payload: postId})
     }
   } catch (err) {
     console.log("found error", err.response);
@@ -124,3 +125,63 @@ export const updatePost = async ({
     setLoading(false);
   }
 };
+
+export const addToLikeList = async ({
+  userInfo,
+  postId,
+  userId,
+  setUpdate,
+  postDispatch
+}) => {
+  try {
+    const { data, status } = await axios.post(
+      `${process.env.REACT_APP_API_URL}/post/like`,
+      {
+        postId,
+        userId
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${userInfo().token}`,
+        },
+      }
+    );
+    if (data.success && status === 200) {
+      console.log(data)
+      setUpdate(data.post);
+      postDispatch({ type: "UPDATE", payload: data.post });
+    }
+  } catch (err) {
+    console.log(err.response);
+  }
+}
+
+export const removeFromLikeList = async ({
+  userInfo,
+  postId,
+  userId,
+  setUpdate,
+  postDispatch
+}) => {
+  try {
+    const { data, status } = await axios.post(
+      `${process.env.REACT_APP_API_URL}/post/unlike`,
+      {
+        postId,
+        userId
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${userInfo().token}`,
+        },
+      }
+    );
+    if (data.success && status === 200) {
+      console.log(data)
+      setUpdate(data.post);
+      postDispatch({ type: "UPDATE", payload: data.post });
+    }
+  } catch (err) {
+    console.log(err.response);
+  }
+}
