@@ -1,13 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 
-function Image({ url, photo, id, hasImage, styling }) {
-  const imageRef = useRef();
-  useEffect(() => {
-    imageRef.current.src = hasImage
-      ? `${process.env.REACT_APP_API_URL}/user/${url}/${id}`
-      : `${photo}`;
-  }, [hasImage, url, id, photo]);
-  return <img ref={imageRef} src={photo} alt={url} className={styling} />;
+function Image({ url, photo, id, styling }) {
+  
+  return <img src={`${process.env.REACT_APP_API_URL}/user/${url}/${id}`} alt={url} className={styling} onError={i => i.target.src = `${photo}`} />;
 }
 
 export default Image;

@@ -16,7 +16,6 @@ import "./Profile.css";
 function Profile() {
   const { userId } = useParams();
   const [userData, setUserData] = useState("");
-
   const follow = () => {
     const userId = userInfo().user._id;
     const followId = userData._id;
@@ -35,20 +34,18 @@ function Profile() {
     <>
       {userData ? (
         <>
-          <section className="container profile-card">
+          <section className="profile-card">
             <div className="profile-background">
               <Image
                 url={"background"}
                 photo={BackgroundImage}
                 id={userData._id}
-                hasImage={userData.background}
               />
             </div>
             <Image
               url={"photo"}
               photo={ProfileImage}
               id={userData._id}
-              hasImage={userData.userphoto}
               styling="profile-img"
             />
             <div className="profile-detail">

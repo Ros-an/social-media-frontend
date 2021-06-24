@@ -87,7 +87,7 @@ function EditProfile() {
   }, [userId]);
 
   if (navigation) {
-    return <Navigate to={`/${userInfo().user.name.split(" ")[0]}/${userId}`} />;
+    return <Navigate replace to={`/${userInfo().user.name.split(" ")[0]}/${userId}`} />;
   }
 
   return (

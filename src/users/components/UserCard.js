@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {useState } from "react";
 import "./UserCard.css";
 import DefaultAvatar from "../../assets/avatar.jpg";
 import { Link } from "react-router-dom";
@@ -8,7 +8,6 @@ import FollowUnFollowBtn from "./FollowUnFollowBtn";
 
 function UserCard({ data }) {
   const [userData, setUserData] = useState(data);
-  const imageRef = useRef();
   const follow = () => {
     const userId = userInfo().user._id;
     const followId = userData._id;
@@ -19,13 +18,7 @@ function UserCard({ data }) {
     const unFollowId = userData._id;
     unFollowUser({ userId, unFollowId, userInfo, setUserData });
   };
-  useEffect(() => {
-    if (data.userphoto) {
-      imageRef.current.src = `${process.env.REACT_APP_API_URL}/user/photo/${data._id}`;
-    } else {
-      imageRef.current.src = `${DefaultAvatar}`;
-    }
-  });
+  
   return (
     <div className="user-card">
       <Link
@@ -33,7 +26,7 @@ function UserCard({ data }) {
         className="user-card__info"
       >
         <div className="image">
-          <img src={DefaultAvatar} ref={imageRef} alt="user" />
+          <img src={`${process.env.REACT_APP_API_URL}/user/photo/${data._id}`}  alt="user" onError={i => i.target.src =`${DefaultAvatar}`} />
         </div>
         <div className="user-detail">
           <p className="user-name">{userData.name}</p>

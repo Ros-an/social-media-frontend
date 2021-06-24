@@ -9,7 +9,6 @@ function Users() {
   const localStore = userInfo();
   useEffect(() => {
     getAllUsers(setUsers);
-    console.log("users useEffec");
   }, []);
   if (!isAuthenticated()) {
     return <Navigate to="/authenticate" />;
