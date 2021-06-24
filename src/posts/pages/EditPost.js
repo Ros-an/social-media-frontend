@@ -52,7 +52,7 @@ function EditProfile() {
   }, [postId]);
 
   if (navigation) {
-    return <Navigate to={`/${userInfo().user.name.split(" ")[0]}/post/${postId}`} />;
+    return <Navigate replace to={`/${userInfo().user.name.split(" ")[0]}/post/${postId}`} />;
   }
 
   return (
