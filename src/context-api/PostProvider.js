@@ -6,13 +6,25 @@ const reducer = (state, action) => {
     case "LOAD_POST_DATA":
       return {
         ...state,
-        posts: action.payload.reverse(),
+        posts: action.payload,
       };
-    case "RELOAD":
+    case "ADD_POST":
+      state.posts.splice(0,0,action.payload);
+      return {
+        ...state
+      }
+    case "UPDATE":
+      const updatePost = state.posts.map(post => post._id === action.payload._id ? action.payload : post);
       return {
         ...state,
-        loader: !state.loader,
-      };
+        posts: updatePost
+      }
+    case "REMOVE":
+      const newPosts = state.posts.filter(post => post._id !== action.payload);
+      return {
+        ...state,
+        posts: newPosts
+      }
     default:
       return state;
   }
@@ -20,7 +32,6 @@ const reducer = (state, action) => {
 
 const initialState = {
   posts: [],
-  loader: false,
 };
 export const PostProvider = ({ children }) => {
   const [state, postDispatch] = useReducer(reducer, initialState);
