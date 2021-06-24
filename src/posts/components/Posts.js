@@ -7,14 +7,15 @@ import { ContentLoader } from "../../shared/components/Loader";
 import "./Posts.css";
 
 function Posts() {
-  const { posts, loader, postDispatch } = usePostContext();
+  const { posts, postDispatch } = usePostContext();
   const getAllPosts = useCallback(async () => {
     try {
       const { data, status } = await axios.get(
         `${process.env.REACT_APP_API_URL}/posts`
       );
       if (data.success && status === 200) {
-        postDispatch({ type: "LOAD_POST_DATA", payload: data.posts });
+        const posts = data.posts.reverse()
+        postDispatch({ type: "LOAD_POST_DATA", payload: posts });
       }
     } catch (err) {
       console.log(err.response);
@@ -22,7 +23,7 @@ function Posts() {
   }, [postDispatch]);
   useEffect(() => {
     getAllPosts();
-  }, [getAllPosts, loader]);
+  }, [getAllPosts]);
   return (
     <>
       {posts.length === 0 && <ContentLoader />}
