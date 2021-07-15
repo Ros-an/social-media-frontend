@@ -33,7 +33,6 @@ export const deleteUserAccount = async ({
       }
     );
     if (data.success && status === 200) {
-      console.log("data after delete", data);
       logoutUser(dispatch);
     }
   } catch (err) {
@@ -48,7 +47,6 @@ export const getAllUsers = async (setUsers) => {
     );
     if (data.success && status === 200) {
       setUsers(data.users);
-      console.log(data);
     }
   } catch (err) {
     console.log("Error:", err.response);
@@ -131,7 +129,6 @@ export const followUser = async ({
         },
       }
     );
-    console.log(data);
     if (data.success) {
       setUserData(data.user);
     }
@@ -159,7 +156,6 @@ export const unFollowUser = async ({
         },
       }
     );
-    console.log(data);
     if (data.success) {
       setUserData(data.user);
     }

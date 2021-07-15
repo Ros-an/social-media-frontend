@@ -29,7 +29,6 @@ function Loader() {
 function LoaderBig() {
   const { closeLoader, loader } = useGeneralContext();
   if (loader) {
-    console.log("loader is on");
     setTimeout(() => closeLoader(), 1250);
   }
   return (

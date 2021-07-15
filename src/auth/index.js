@@ -10,7 +10,7 @@ export const logoutUser = async (dispatch) => {
       `${process.env.REACT_APP_API_URL}/signout`
     );
 
-    console.log(response);
+    console.log(response.data.message);
   } catch (err) {
     console.log(err.response);
   }
