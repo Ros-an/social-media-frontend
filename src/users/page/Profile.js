@@ -6,7 +6,7 @@ import { getUserData, followUser, unFollowUser } from "../index";
 import ProfileImage from "../../assets/avatar.jpg";
 import Image from "../components/Image";
 import BackgroundImage from "../../assets/background.jpg";
-import DeleteProfileBtn from "../components/DeleteProfileBtn";
+// import DeleteProfileBtn from "../components/DeleteProfileBtn";
 import EditProfileBtn from "../components/EditProfileBtn";
 import About from "../components/About";
 import FollowUnFollowBtn from "../components/FollowUnFollowBtn";
@@ -28,7 +28,6 @@ function Profile() {
   };
   useEffect(() => {
     getUserData({ userId, setUserData, userInfo });
-    console.log("profile useEffect");
   }, [userId]);
   return (
     <>
@@ -65,7 +64,7 @@ function Profile() {
                 {isAuthenticated() && userInfo().user._id === userData._id ? (
                   <>
                     <EditProfileBtn />
-                    <DeleteProfileBtn userId={userData._id} />
+                    {/* <DeleteProfileBtn userId={userData._id} /> */}
                   </>
                 ) : (
                   <FollowUnFollowBtn
