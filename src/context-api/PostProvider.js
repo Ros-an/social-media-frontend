@@ -9,22 +9,32 @@ const reducer = (state, action) => {
         posts: action.payload,
       };
     case "ADD_POST":
-      state.posts.splice(0,0,action.payload);
+      state.posts.splice(0, 0, action.payload);
       return {
-        ...state
-      }
+        ...state,
+      };
     case "UPDATE":
-      const updatePost = state.posts.map(post => post._id === action.payload._id ? action.payload : post);
+      const updatePost = state.posts.map((post) =>
+        post._id === action.payload._id ? action.payload : post
+      );
       return {
         ...state,
-        posts: updatePost
-      }
+        posts: updatePost,
+      };
+    case "RELOAD":
+      return {
+        ...state,
+        load: !state.load,
+      };
     case "REMOVE":
-      const newPosts = state.posts.filter(post => post._id !== action.payload);
+      const newPosts = state.posts.filter(
+        (post) => post._id !== action.payload
+      );
       return {
         ...state,
-        posts: newPosts
-      }
+        posts: newPosts,
+      };
+
     default:
       return state;
   }
@@ -32,6 +42,7 @@ const reducer = (state, action) => {
 
 const initialState = {
   posts: [],
+  load: false,
 };
 export const PostProvider = ({ children }) => {
   const [state, postDispatch] = useReducer(reducer, initialState);

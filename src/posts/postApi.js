@@ -20,7 +20,6 @@ export const createPost = async ({
       }
     );
     if (data.success && status === 200) {
-      console.log("post created", data);
       setData({
         post: "",
       });
@@ -39,7 +38,7 @@ export const deletePost = async ({
   postId,
   navigate,
   dispatch,
-  postDispatch
+  postDispatch,
 }) => {
   try {
     const { data, status } = await axios.delete(
@@ -51,19 +50,19 @@ export const deletePost = async ({
       }
     );
     if (data.success && status === 200) {
-      dispatch({type: "TOAST_OPEN", payload: "Deletion of selected post: Successfull !"})
-      navigate(`/${userInfo().user.name.split(" ")[0]}/${userInfo().user._id}`)
-      postDispatch({type: "REMOVE", payload: postId})
+      dispatch({
+        type: "TOAST_OPEN",
+        payload: "Deletion of selected post: Successfull !",
+      });
+      navigate(`/${userInfo().user.name.split(" ")[0]}/${userInfo().user._id}`);
+      postDispatch({ type: "REMOVE", payload: postId });
     }
   } catch (err) {
     console.log("found error", err.response);
   }
 };
 
-export const getPostById = async ({
-  postId,
-  setPost,
-}) => {
+export const getPostById = async ({ postId, setPost }) => {
   try {
     const { data, status } = await axios.get(
       `${process.env.REACT_APP_API_URL}/post/${postId}`
@@ -76,19 +75,15 @@ export const getPostById = async ({
   }
 };
 
-
-export const getPostForEdit = async ({
-  postId,
-  setData,
-}) => {
+export const getPostForEdit = async ({ postId, setData }) => {
   try {
     const { data, status } = await axios.get(
       `${process.env.REACT_APP_API_URL}/post/${postId}`
     );
     if (data.success && status === 200) {
-      setData(prevValue => ({
+      setData((prevValue) => ({
         ...prevValue,
-        post: data.post.post
+        post: data.post.post,
       }));
     }
   } catch (err) {
@@ -102,6 +97,7 @@ export const updatePost = async ({
   formData,
   setNavigation,
   setErrorMessage,
+  postDispatch,
   setLoading,
 }) => {
   try {
@@ -115,7 +111,7 @@ export const updatePost = async ({
       }
     );
     if (data.success && status === 200) {
-      console.log("post updated", data);
+      postDispatch({ type: "RELOAD" });
       setNavigation(true);
     }
   } catch (err) {
@@ -131,14 +127,14 @@ export const addToLikeList = async ({
   postId,
   userId,
   setUpdate,
-  postDispatch
+  postDispatch,
 }) => {
   try {
     const { data, status } = await axios.post(
       `${process.env.REACT_APP_API_URL}/post/like`,
       {
         postId,
-        userId
+        userId,
       },
       {
         headers: {
@@ -147,28 +143,27 @@ export const addToLikeList = async ({
       }
     );
     if (data.success && status === 200) {
-      console.log(data)
       setUpdate(data.post);
       postDispatch({ type: "UPDATE", payload: data.post });
     }
   } catch (err) {
     console.log(err.response);
   }
-}
+};
 
 export const removeFromLikeList = async ({
   userInfo,
   postId,
   userId,
   setUpdate,
-  postDispatch
+  postDispatch,
 }) => {
   try {
     const { data, status } = await axios.post(
       `${process.env.REACT_APP_API_URL}/post/unlike`,
       {
         postId,
-        userId
+        userId,
       },
       {
         headers: {
@@ -177,11 +172,44 @@ export const removeFromLikeList = async ({
       }
     );
     if (data.success && status === 200) {
-      console.log(data)
       setUpdate(data.post);
       postDispatch({ type: "UPDATE", payload: data.post });
     }
   } catch (err) {
     console.log(err.response);
   }
-}
+};
+
+export const addComment = async ({
+  userInfo,
+  postId,
+  userId,
+  text,
+  setLoader,
+  postDispatch,
+  setUpdate,
+}) => {
+  try {
+    setLoader(true);
+    const { data, status } = await axios.post(
+      `${process.env.REACT_APP_API_URL}/post/comment`,
+      {
+        postId,
+        userId,
+        comment: { text },
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${userInfo().token}`,
+        },
+      }
+    );
+    if (data.success && status === 200) {
+      setUpdate(data.comment.comments);
+      postDispatch({ type: "UPDATE", payload: data.comment });
+    }
+  } catch (err) {
+    console.log(err.response);
+  }
+  setLoader(false);
+};
