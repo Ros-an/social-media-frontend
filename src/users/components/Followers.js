@@ -30,7 +30,7 @@ function Followers({ followers, userphoto }) {
             fontWeight: "500",
           }}
         >
-          No Followers
+          no followers
         </h3>
       )}
     </div>
