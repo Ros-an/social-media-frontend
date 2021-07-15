@@ -24,7 +24,7 @@
   text-decoration: none;
   color: black;
 }
-.post-card .post-user .user-detail .user-name:hover{
+.post-card .post-user .user-detail .user-name:hover {
   color: var(--color-blue);
 }
 .post-card .post-detail {
@@ -39,35 +39,7 @@
   height: 30rem;
   object-fit: cover;
 }
-.post-card .post-like-comment {
-  border-top: 1px solid rgba(128, 128, 128, 0.5);
-  padding: 0.5rem 1rem;
-  display: flex;
-  align-items: center;
-}
-.post-card .post-like-comment .unlike,
-.post-card .post-like-comment .like,
-.post-card .post-like-comment .comment {
-  font-size: 1.75rem;
-  transform: scaleX(-1);
-}
-.post-card .post-like-comment .unlike,
-.post-card .post-like-comment .comment {
-  color: gray;
-}
-.post-card .post-like-comment .like {
-  color: var(--color-lightblue);
-}
 
-.post-card .post-like-comment small {
-  display: flex;
-  align-items: center;
-  margin-right: 1rem;
-}
-.post-card .post-like-comment small span {
-  font-weight: 500;
-  margin-left: 0.25rem;
-}
 /* -------------------break-point---------------------- */
 @media screen and (max-width: 780px) {
   .feed .posts {
