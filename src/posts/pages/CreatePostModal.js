@@ -35,11 +35,11 @@ export default function TransitionsModal() {
     const { post, postphoto } = data;
     formData.set("post", post);
     if (postphoto) {
-      if (postphoto.size < 500000) {
+      if (postphoto.size < 250000) {
         formData.set("postphoto", postphoto);
       } else {
         console.log("this is error segment");
-        return setErrorMessage("image size < 500KB");
+        return setErrorMessage("image size < 250KB");
       }
     }
     createPost({

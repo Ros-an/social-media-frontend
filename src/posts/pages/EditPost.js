@@ -3,12 +3,14 @@ import { userInfo } from "../../utils/authrelated";
 import { useParams, Navigate } from "react-router-dom";
 import {getPostForEdit, updatePost} from "../postApi";
 import { Loader } from "../../shared/components/Loader";
+import {usePostContext} from "../../context-api/PostProvider";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import "../../users/page/EditProfile.css";
 
 function EditProfile() {
   const formData = new FormData(); //we send this to backend
   const { postId } = useParams();
+  const {postDispatch} = usePostContext();
   const [errorMessage, setErrorMessage] = useState("");
   const [navigation, setNavigation] = useState(false);
   const [isLoading, setLoading] = useState(false);
@@ -31,10 +33,10 @@ function EditProfile() {
     const { post, postphoto } = data;
     formData.set("post", post);
     if (postphoto) {
-      if (postphoto.size < 500000) {
+      if (postphoto.size < 250000) {
         formData.set("postphoto", postphoto);
       } else {
-        return setErrorMessage("image size < 500KB");
+        return setErrorMessage("image size < 250KB");
       }
     }
     setLoading(true);
@@ -44,6 +46,7 @@ function EditProfile() {
       setLoading,
       postId,
       setNavigation,
+      postDispatch,
       setErrorMessage
     });
   };
