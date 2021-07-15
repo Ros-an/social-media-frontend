@@ -102,6 +102,7 @@
   border-radius: 1.25rem;
   font-family: inherit;
   font-size: 1rem;
+  color: var(--color-light);
   background: var(--color-lightblue);
   border-color: var(--color-lightblue);
   border-radius: 2rem;
