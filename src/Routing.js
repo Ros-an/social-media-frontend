@@ -7,6 +7,7 @@ import EditPost from "./posts/pages/EditPost";
 import PrivateRoute from "./private/PrivateRoute";
 import Feed from "./posts/pages/Feed";
 import SinglePost from "./posts/pages/SinglePost";
+import Notification from "./users/page/Notification";
 function Routing() {
   return (
     <>
@@ -17,6 +18,7 @@ function Routing() {
         <PrivateRoute path="/:user/:userId/edit" element={<EditProfile />} />
         <PrivateRoute path="/:user/post/:postId/edit" element={<EditPost />} />
         <PrivateRoute path="/:user/post/:postId" element={<SinglePost />} />
+        <PrivateRoute path="/notification" element={<Notification />} />
         <Route path="/authenticate" element={<Authenticate />} />
       </Routes>
     </>
