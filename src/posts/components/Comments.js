@@ -59,11 +59,11 @@ function Comments({ _id, likes, like, unlike, comments }) {
                 <Image
                   url={"photo"}
                   photo={DefaultAvatar}
-                  id={commentBy._id}
+                  id={commentBy?._id}
                   styling="avatar-img-sm"
                 />
                 <div className="comment__detail">
-                  <h4 style={{ fontWeight: "600" }}>{commentBy.name}</h4>
+                  <h4 style={{ fontWeight: "600" }}>{commentBy?.name}</h4>
                   <p>{text}</p>
                   <p className="commented__time">{`${new Date(
                     created

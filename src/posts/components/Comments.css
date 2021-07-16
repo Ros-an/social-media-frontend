@@ -58,6 +58,7 @@
   min-height: 4rem;
   width: 100%;
   padding: 0.5rem;
+  flex: 1;
 }
 .comment__of-user .comment .comment__detail .commented__time {
   position: absolute;
