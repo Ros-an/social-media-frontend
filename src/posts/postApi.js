@@ -185,6 +185,7 @@ export const addComment = async ({
   postId,
   userId,
   text,
+  setText,
   setLoader,
   postDispatch,
   setUpdate,
@@ -205,6 +206,7 @@ export const addComment = async ({
       }
     );
     if (data.success && status === 200) {
+      setText("");
       setUpdate(data.comment.comments);
       postDispatch({ type: "UPDATE", payload: data.comment });
     }

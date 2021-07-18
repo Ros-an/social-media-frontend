@@ -22,6 +22,7 @@ function Comments({ _id, likes, like, unlike, comments }) {
       userId,
       postId,
       text,
+      setText,
       userInfo,
       setLoader,
       postDispatch,
@@ -33,16 +34,20 @@ function Comments({ _id, likes, like, unlike, comments }) {
       <div className="post-like-comment">
         <small>
           {!likes.some((e) => e === userId) && (
-            <ThumbUpAltOutlinedIcon
-              className="unlike pointer-cursor"
-              onClick={like}
-            />
+            <span className="like-unlike-btn">
+              <ThumbUpAltOutlinedIcon
+                className="unlike pointer-cursor"
+                onClick={like}
+              />
+            </span>
           )}
           {likes.some((e) => e === userId) && (
-            <ThumbUpAltRoundedIcon
-              className="like pointer-cursor"
-              onClick={unlike}
-            />
+            <span className="like-unlike-btn">
+              <ThumbUpAltRoundedIcon
+                className="like pointer-cursor"
+                onClick={unlike}
+              />
+            </span>
           )}
           <span>{likes.length === 0 ? "Like" : `${likes.length}`}</span>
         </small>
