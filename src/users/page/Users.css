@@ -1,0 +1,19 @@
+.users-section .search-box {
+  text-align: right;
+}
+.users-section .search-box input {
+  padding: 0.5rem;
+  height: 2.5rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  border-radius: 0.5rem;
+  outline: var(--color-lightblue);
+  border: 1px outset var(--color-lightblue);
+  width: 15rem;
+}
+
+.users-section .users .no-user-found {
+  font-weight: 500;
+  margin: 2rem 0;
+  text-align: center;
+}
