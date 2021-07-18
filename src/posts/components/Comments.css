@@ -4,6 +4,13 @@
   display: flex;
   align-items: center;
 }
+.post-card .post-like-comment .like-unlike-btn {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .post-card .post-like-comment .unlike,
 .post-card .post-like-comment .like,
 .post-card .post-like-comment .comment-icon {
@@ -19,6 +26,10 @@
 }
 .post-card .post-like-comment .comment-btn {
   cursor: pointer;
+}
+.post-card .post-like-comment .unlike:active,
+.post-card .post-like-comment .like:active {
+  font-size: 1.5rem;
 }
 .post-card .post-like-comment small {
   display: flex;
