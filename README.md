@@ -44,6 +44,7 @@ Live Demo: [Socialize](https://socialize-front.netlify.app/)
 - Axios
 - ExpressJS
 - MongoDB
+- Nodejs
 - CSS
 - Formidable for storing image in a database
 - JWT for token generation
