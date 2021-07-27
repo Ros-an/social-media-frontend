@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ContentLoader } from "../../shared/components/Loader";
 import { userInfo } from "../../utils/authrelated";
 import { getUserData } from "../index";
+import FollowerNotification from "../components/notification/FollowerNotification";
 import "./Notification.css";
 function Notification() {
   const [userData, setUserData] = useState();
@@ -15,17 +16,10 @@ function Notification() {
         <>
           {userData.followers.length === 0 && (
             <h3 style={{ fontWeight: "400", textAlign: "center" }}>
-              no notifcation...
+              no notification...
             </h3>
           )}
-          {userData.followers.length === 1 && (
-            <p className="notify">{`${userData.followers[0].name} has started following you.`}</p>
-          )}
-          {userData.followers.length > 1 && (
-            <p className="notify">{`${userData.followers[0].name} and ${
-              userData.followers.length - 1
-            } others have started following you.`}</p>
-          )}
+          <FollowerNotification userData={userData} />
         </>
       ) : (
         <ContentLoader />
