@@ -20,7 +20,9 @@ function DropDown() {
         onClick={() => setToggle(!toggle)}
       >
         <Link
-          to={`/${userInfo().user.name.split(" ")[0]}/${userInfo().user._id}`}
+          to={`/${userInfo()?.user?.name?.split(" ")[0]}/${
+            userInfo().user._id
+          }`}
         >
           Profile
         </Link>
