@@ -17,7 +17,8 @@ Live Demo: [Socialize](https://socialize-front.netlify.app/)
 8.  Like Post 
 9.  Comment on Post
 10. Follow and Unfollow
-11. User Profile page
+11. Search User
+12. User Profile page
     - can upload profile image
     - can upload profile background cover
     - Edit user info
@@ -25,9 +26,9 @@ Live Demo: [Socialize](https://socialize-front.netlify.app/)
     - Follower section(can access follower detail from there)
     - Following section(can access follow detail from there)
     - About field
-12. Image stored using Formidable
-13. Fully responsive
-14. Data persistence using backend
+13. Image stored using Formidable
+14. Fully responsive
+15. Data persistence using backend
 
 ## Features to be added
 1. Delete comment, like comment
@@ -43,8 +44,10 @@ Live Demo: [Socialize](https://socialize-front.netlify.app/)
 - Axios
 - ExpressJS
 - MongoDB
+- Nodejs
 - CSS
 - Formidable for storing image in a database
+- JWT for token generation
 
 ## How to start using Socialize in your local m/c
 
