@@ -35,7 +35,7 @@ function SignIn({ toggleForm }) {
     }));
   };
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    event?.preventDefault();
     if (readyToSubmit) {
       try {
         const user = {
@@ -58,7 +58,12 @@ function SignIn({ toggleForm }) {
       dispatch({ type: "SHOW_LOADER" });
     }
   };
-
+  const signInAsGuest = () => {
+    setFormField({
+      email: "roshan@gmail.com",
+      password: "@roshan12",
+    });
+  };
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -67,6 +72,7 @@ function SignIn({ toggleForm }) {
           type="email"
           name="email"
           placeholder="Email"
+          value={email}
           onChange={handleChange}
         />
         <span className="password-section">
@@ -74,6 +80,7 @@ function SignIn({ toggleForm }) {
             type={`${passwordVisibililty ? "text" : "password"}`}
             name="password"
             placeholder="Password"
+            value={password}
             onChange={handleChange}
           />
           <span
@@ -90,8 +97,11 @@ function SignIn({ toggleForm }) {
         <p className={`error ${errorMessage ? "display" : "hidden"}`}>
           {errorMessage}
         </p>
-        <button disabled={readyToSubmit ? false : true}>
-          {isLoading ? <Loader /> : "Login"}
+        <button type="submit" disabled={readyToSubmit ? false : true}>
+          {isLoading ? <Loader /> : "Sign In"}
+        </button>
+        <button className="signin-as-guest" onClick={signInAsGuest}>
+          Sign In as Guest
         </button>
         <p className="signup">
           Don't have an account ?
