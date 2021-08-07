@@ -47,6 +47,7 @@
   .user-card {
     padding: 2vw;
     transition: all 0.3s linear;
+    margin: 1vw 0;
   }
   .user-card .user-detail .user-name {
     font-size: 1.05rem;
