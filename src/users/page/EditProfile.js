@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { userInfo, updateLocalData } from "../../utils/authrelated";
 import { useParams } from "react-router-dom";
 import { userDataForEdit, updateProfile } from "../index";
-import { Navigate } from "react-router-dom";
 import { Loader } from "../../shared/components/Loader";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import "./EditProfile.css";
@@ -87,7 +86,7 @@ function EditProfile() {
   }, [userId]);
 
   if (navigation) {
-    return <Navigate replace to={`/${userInfo().user.name.split(" ")[0]}/${userId}`} />;
+    window.location.href = `/${userInfo().user.name.split(" ")[0]}/${userId}`;
   }
 
   return (

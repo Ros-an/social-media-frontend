@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { userInfo } from "../../utils/authrelated";
-import { useParams, Navigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {getPostForEdit, updatePost} from "../postApi";
 import { Loader } from "../../shared/components/Loader";
 import {usePostContext} from "../../context-api/PostProvider";
@@ -55,7 +55,7 @@ function EditProfile() {
   }, [postId]);
 
   if (navigation) {
-    return <Navigate replace to={`/${userInfo().user.name.split(" ")[0]}/post/${postId}`} />;
+    window.location.href=`/${userInfo().user.name.split(" ")[0]}/post/${postId}`;
   }
 
   return (

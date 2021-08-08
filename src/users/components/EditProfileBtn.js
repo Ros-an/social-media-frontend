@@ -9,8 +9,9 @@ function EditProfileBtn() {
       to={`/${userInfo().user.name.split(" ")[0]}/${userInfo().user._id}/edit`}
       title="Edit Profile"
     >
-      <EditIcon style={{ color: "var(--color-lightblue)" }} />
-      <small style={{ color: "black" }}>Edit</small>
+      <button className="icontype-btn">
+            <EditIcon style={{ color: "var(--color-lightblue)" }} />
+      </button>
     </Link>
   );
 }

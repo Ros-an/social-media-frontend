@@ -105,9 +105,9 @@ export const updateProfile = async ({
   } catch (err) {
     console.log(err.response);
     setErrorMessage(err.response.data.message);
-  } finally {
     setLoading(false);
   }
+  
 };
 
 export const followUser = async ({

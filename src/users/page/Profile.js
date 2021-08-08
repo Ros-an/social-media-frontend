@@ -15,7 +15,8 @@ import "./Profile.css";
 
 function Profile() {
   const { userId } = useParams();
-  const [userData, setUserData] = useState("");
+  const [userData, setUserData] = useState(null);
+  
   const follow = () => {
     const userId = userInfo().user._id;
     const followId = userData._id;
