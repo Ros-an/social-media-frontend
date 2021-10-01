@@ -1,0 +1,22 @@
+
+.single-post {
+    background: white;
+    border: 1px solid rgba(128, 128, 128, 0.5);
+    position: relative;
+}
+.single-post .post-control {
+    position: absolute;
+    right: 0.5rem;
+    display: flex;
+    align-items: center;
+    top: 0.5rem;
+}
+.single-post .post-control .edit {
+    margin-right: 0.25rem;
+}
+.single-post .post-control .edit:hover {
+    color: var(--color-lightblue);
+}
+.single-post .post-control .delete:hover {
+    color: red;
+}

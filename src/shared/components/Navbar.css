@@ -1,0 +1,95 @@
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+.navigation {
+  background: var(--color-lightblue);
+  position: sticky;
+  height: 3.5rem;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-index-five);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+
+.navigation .logo {
+  font-family: "Satisfy", cursive;
+  font-weight: 500;
+  font-size: 2.25rem;
+  cursor: pointer;
+  padding-left: 8vw;
+  transition: all 0.3s linear;
+  color: var(--color-light);
+  text-decoration: none;
+}
+
+.navigation .navigation-item {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+
+.navigation .navigation-item .link {
+  color: var(--color-light);
+}
+.navigation .navigation-item .link,
+.navigation .navigation-item .navigation-item--user {
+  text-decoration: none;
+  min-width: 6rem;
+  font-size: 1.1rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  border-bottom: 3px solid transparent;
+  transition: all 0.1s linear;
+}
+
+.navigation .navigation-item .link p,
+.navigation .navigation-item .navigation-item--user {
+  font-size: 0.75rem;
+  margin: 0;
+  font-weight: 400;
+}
+.navigation .navigation-item .navigation-item--user .account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+}
+.navigation .navigation-item .link:hover {
+  color: black;
+}
+.navigation .navigation-item .link:active,
+.navigation .navigation-item .link.active {
+  color: black;
+  border-bottom: 3px solid black;
+}
+
+.navigation .navigation-item .navigation-item--user img {
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* --------small screen------- */
+
+@media screen and (max-width: 580px) {
+  .navigation .logo {
+    font-size: 2rem;
+    padding-left: 2vw;
+  }
+  .navigation .navigation-item .link,
+  .navigation .navigation-item .navigation-item--user {
+    min-width: 3rem;
+  }
+  .navigation .navigation-item .link p {
+    display: none;
+  }
+}

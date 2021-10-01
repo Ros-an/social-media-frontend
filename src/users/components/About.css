@@ -1,0 +1,28 @@
+.about {
+  margin-top: 0.5%;
+  background: white;
+  padding: 0.5rem 2rem;
+  box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.125);
+}
+
+.about .heading {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+.about .about-yourself {
+  line-height: 1.5rem;
+  padding: 0.25rem 0;
+  font-size: 1rem;
+}
+.show-btn {
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  color: var(--color-lightblue);
+}
+@media screen and (max-width: 780px) {
+  .about {
+    padding: 0.5rem 1rem;
+    margin-top: 0.5%;
+  }
+}

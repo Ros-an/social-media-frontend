@@ -1,0 +1,27 @@
+.follow-unfollow {
+  display: inline;
+}
+.follow-unfollow .follow,
+.follow-unfollow .unfollow {
+  background: transparent;
+  cursor: pointer;
+  padding: 0.15rem 0.75rem;
+  font-family: inherit;
+  font-size: 1rem;
+  border-color: var(--color-lightblue);
+  color: var(--color-lightblue);
+  border-radius: 0.25rem;
+  border-width: 1px;
+}
+.follow-unfollow .unfollow {
+  border-color: red;
+  color: red;
+}
+.follow-unfollow .follow:active {
+  background: var(--color-lightblue);
+  color: white;
+}
+.follow-unfollow .unfollow:active {
+  background: red;
+  color: white;
+}
