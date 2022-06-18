@@ -39,6 +39,27 @@
   height: 30rem;
   object-fit: cover;
 }
+.load-more__section {
+  display: flex;
+  justify-content: center;
+  margin: 3rem 0;
+}
+.load-more {
+  background: var(--color-lightblue);
+  cursor: pointer;
+  padding: 0.15rem 0.75rem;
+  font-family: inherit;
+  font-size: 1rem;
+  border-color: var(--color-lightblue);
+  color: black;
+  border-radius: 0.25rem;
+  border-width: 1px;
+}
+
+.load-more:active {
+  opacity: 1.25;
+  color: white;
+}
 
 /* -------------------break-point---------------------- */
 @media screen and (max-width: 780px) {
