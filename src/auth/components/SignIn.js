@@ -60,8 +60,8 @@ function SignIn({ toggleForm }) {
   };
   const signInAsGuest = () => {
     setFormField({
-      email: "roshan@gmail.com",
-      password: "@roshan12",
+      email: "guestuser@gmail.com",
+      password: "@GuestUser12",
     });
   };
   return (
